@@ -39,4 +39,14 @@ public class Controller : MonoBehaviour
     {
         input = context.ReadValue<Vector2>();
     }
+
+    // キー入力の値を受け取る
+    public void OnFireEvent(InputAction.CallbackContext context)
+    {        
+        // 左クリック or pad右トリガー を押したら
+        if (context.phase == InputActionPhase.Performed)
+        {
+            Debug.Log("Fire");
+        }
+    }
 }
