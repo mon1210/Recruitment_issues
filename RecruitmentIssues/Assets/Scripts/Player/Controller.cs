@@ -9,7 +9,7 @@ public class Controller : MonoBehaviour
     // キー入力を受け取って保存する用
     Vector2 input = Vector2.zero;
 
-    // 
+    // 移動スピード
     [SerializeField] private int MOVE_SPEED = 0;
 
     // Start is called before the first frame update
@@ -34,9 +34,19 @@ public class Controller : MonoBehaviour
         }
     }
 
-    // キー入力の値を受け取る
+    // 移動キーの入力を受け取る
     public void OnMoveEvent(InputAction.CallbackContext context)
     {
         input = context.ReadValue<Vector2>();
+    }
+
+    // 攻撃キーの入力を受け取る
+    public void OnFireEvent(InputAction.CallbackContext context)
+    {        
+        // 左クリック or pad右トリガー を押したら
+        if (context.phase == InputActionPhase.Performed)
+        {
+            Debug.Log("Fire");
+        }
     }
 }
