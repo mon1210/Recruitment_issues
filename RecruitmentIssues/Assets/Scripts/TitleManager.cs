@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class TitleText : MonoBehaviour
+public class TitleManager : MonoBehaviour
 {
     void Update()
     {
