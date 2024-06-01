@@ -148,7 +148,7 @@ Transform:
   m_GameObject: {fileID: 420288890}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -367,6 +367,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 77f8abe2-c212-4848-81ca-bb93c02966bc
     m_ActionName: Title/Start[/Keyboard/enter,/DualShock4GamepadHID/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2323357392908593043}
+        m_TargetAssemblyTypeName: Controller, Assembly-CSharp
+        m_MethodName: OnLowEvent
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 0bc8c8f7-8728-44e8-90ce-5153ce62a681
+    m_ActionName: Player/Low[/Keyboard/leftShift,/DualShock4GamepadHID/leftTrigger]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -807,6 +823,10 @@ PrefabInstance:
     - target: {fileID: 6850233090507272820, guid: d0ded42676d9fd04fab1238a4ed5c749, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7639157268999074836, guid: d0ded42676d9fd04fab1238a4ed5c749, type: 3}
+      propertyPath: cutSpeed
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7639157268999074836, guid: d0ded42676d9fd04fab1238a4ed5c749, type: 3}
       propertyPath: MOVE_SPEED
