@@ -15,19 +15,21 @@ public class Controller : MonoBehaviour
     private Vector2 input = Vector2.zero;
     // スクリプト取得　IsMoveAble用
     private Collider colliderScript;
+    // 減速フラグ
+    private bool isLow = false;
 
     // 弾発射位置調整用定数
     const float BULLET_OFFSET_Y = 1.0f;
+    // 移動速度原則倍率定数
+    const float SLOWDOWN_FACTOR = 0.5f;
 
     public Vector2 Input { get => input;}
 
-    // Start is called before the first frame update
     void Start()
     {
         colliderScript = GetComponent<Collider>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         // 移動可能時のみ移動
@@ -42,8 +44,16 @@ public class Controller : MonoBehaviour
     {
         if(input.x != 0 || input.y != 0)
         {
-            // 入力された方向に移動
-            transform.Translate(input * moveSpeed * Time.deltaTime);
+            if (isLow)
+            {
+                // 減速時
+                transform.Translate(input * moveSpeed * SLOWDOWN_FACTOR * Time.deltaTime);
+            }
+            else
+            {
+                // 入力された方向に移動
+                transform.Translate(input * moveSpeed * Time.deltaTime);
+            }
         }
     }
 
@@ -70,6 +80,21 @@ public class Controller : MonoBehaviour
         if (context.phase == InputActionPhase.Performed)
         {
             fire();
+        }
+    }
+
+    // 低速キーの入力を受け取る
+    public void OnLowEvent(InputAction.CallbackContext context)
+    {
+        // 左クリック or pad右トリガー を押したら
+        if (context.phase == InputActionPhase.Performed)
+        {
+            isLow = true;
+        }
+        // キーを離したら
+        else if (context.phase == InputActionPhase.Canceled)
+        {
+            isLow = false;
         }
     }
 }
