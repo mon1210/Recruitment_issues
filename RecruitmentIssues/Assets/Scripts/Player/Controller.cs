@@ -6,11 +6,17 @@ using UnityEngine.Windows;
 
 public class Controller : MonoBehaviour
 {
+    // 弾Prefab取得
+    [SerializeField] private GameObject bulletPrefab;
+
     // キー入力を受け取って保存する用
     Vector2 input = Vector2.zero;
 
     // 移動スピード
-    [SerializeField] private int MOVE_SPEED = 0;
+    [SerializeField] private int moveSpeed = 0;
+
+    // 弾発射位置調整用定数
+    const float BULLET_OFFSET_Y = 1.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -30,8 +36,18 @@ public class Controller : MonoBehaviour
         if(input.x != 0 || input.y != 0)
         {
             // 入力された方向に移動
-            transform.Translate(input * MOVE_SPEED * Time.deltaTime);
+            transform.Translate(input * moveSpeed * Time.deltaTime);
         }
+    }
+
+    // 攻撃関数
+    private void fire()
+    {
+        // 弾の位置調整
+        bulletPrefab.transform.position = new Vector3(transform.position.x,transform.position.y + BULLET_OFFSET_Y, transform.position.z);
+        
+        // 弾生成
+        Instantiate(bulletPrefab);
     }
 
     // 移動キーの入力を受け取る
@@ -46,7 +62,7 @@ public class Controller : MonoBehaviour
         // 左クリック or pad右トリガー を押したら
         if (context.phase == InputActionPhase.Performed)
         {
-            Debug.Log("Fire");
+            fire();
         }
     }
 }
