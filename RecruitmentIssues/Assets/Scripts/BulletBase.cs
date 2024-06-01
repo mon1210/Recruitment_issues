@@ -9,7 +9,6 @@ public class BulletBase : MonoBehaviour
     // ‘¶ÝŽžŠÔ’è”     ‚±‚ê‚ð’´‚¦‚é‚Ædelete
     const float LIFETIME = 1.5f;
 
-    // Update is called once per frame
     void Update()
     {
         timer += Time.deltaTime;
@@ -21,7 +20,7 @@ public class BulletBase : MonoBehaviour
     }
 
     // íœ”»’èŠÖ”
-    protected bool isDestroy()
+    private bool isDestroy()
     {
         // ‰æ–ÊŠO‚Éo‚½Žž
         if (timer >= LIFETIME)
