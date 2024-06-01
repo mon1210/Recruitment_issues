@@ -29,7 +29,6 @@ public class Collider : MonoBehaviour
         screenRightTop = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0));
     }
 
-    // Update is called once per frame
     void Update()
     {
         // ˆÚ“®‰Â”\ƒtƒ‰ƒOØ‚è‘Ö‚¦
