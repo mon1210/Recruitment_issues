@@ -8,26 +8,33 @@ public class Controller : MonoBehaviour
 {
     // 弾Prefab取得
     [SerializeField] private GameObject bulletPrefab;
-
-    // キー入力を受け取って保存する用
-    Vector2 input = Vector2.zero;
-
     // 移動スピード
     [SerializeField] private int moveSpeed = 0;
+
+    // キー入力を受け取って保存する用
+    private Vector2 input = Vector2.zero;
+    // スクリプト取得　IsMoveAble用
+    private Collider colliderScript;
 
     // 弾発射位置調整用定数
     const float BULLET_OFFSET_Y = 1.0f;
 
+    public Vector2 Input { get => input;}
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        colliderScript = GetComponent<Collider>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        move();
+        // 移動可能時のみ移動
+        if (colliderScript.IsMoveAble)
+        {
+            move();
+        }
     }
 
     // 移動関数
