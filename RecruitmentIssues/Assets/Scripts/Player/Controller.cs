@@ -6,22 +6,37 @@ using UnityEngine.Windows;
 
 public class Controller : MonoBehaviour
 {
-    // キー入力を受け取って保存する用
-    Vector2 input = Vector2.zero;
-
+    // 弾Prefab取得
+    [SerializeField] private GameObject bulletPrefab;
     // 移動スピード
-    [SerializeField] private int MOVE_SPEED = 0;
+    [SerializeField] private int moveSpeed = 0;
 
-    // Start is called before the first frame update
+    // キー入力を受け取って保存する用
+    private Vector2 input = Vector2.zero;
+    // スクリプト取得　IsMoveAble用
+    private Collider colliderScript;
+    // 減速フラグ
+    private bool isLow = false;
+
+    // 弾発射位置調整用定数
+    const float BULLET_OFFSET_Y = 1.0f;
+    // 移動速度原則倍率定数
+    const float SLOWDOWN_FACTOR = 0.5f;
+
+    public Vector2 Input { get => input;}
+
     void Start()
     {
-        
+        colliderScript = GetComponent<Collider>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        move();
+        // 移動可能時のみ移動
+        if (colliderScript.IsMoveAble)
+        {
+            move();
+        }
     }
 
     // 移動関数
@@ -29,9 +44,27 @@ public class Controller : MonoBehaviour
     {
         if(input.x != 0 || input.y != 0)
         {
-            // 入力された方向に移動
-            transform.Translate(input * MOVE_SPEED * Time.deltaTime);
+            if (isLow)
+            {
+                // 減速時
+                transform.Translate(input * moveSpeed * SLOWDOWN_FACTOR * Time.deltaTime);
+            }
+            else
+            {
+                // 入力された方向に移動
+                transform.Translate(input * moveSpeed * Time.deltaTime);
+            }
         }
+    }
+
+    // 攻撃関数
+    private void fire()
+    {
+        // 弾の位置調整
+        bulletPrefab.transform.position = new Vector3(transform.position.x,transform.position.y + BULLET_OFFSET_Y, transform.position.z);
+        
+        // 弾生成
+        Instantiate(bulletPrefab);
     }
 
     // 移動キーの入力を受け取る
@@ -46,7 +79,22 @@ public class Controller : MonoBehaviour
         // 左クリック or pad右トリガー を押したら
         if (context.phase == InputActionPhase.Performed)
         {
-            Debug.Log("Fire");
+            fire();
+        }
+    }
+
+    // 低速キーの入力を受け取る
+    public void OnLowEvent(InputAction.CallbackContext context)
+    {
+        // 左クリック or pad右トリガー を押したら
+        if (context.phase == InputActionPhase.Performed)
+        {
+            isLow = true;
+        }
+        // キーを離したら
+        else if (context.phase == InputActionPhase.Canceled)
+        {
+            isLow = false;
         }
     }
 }
