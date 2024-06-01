@@ -2,19 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletCollider : MonoBehaviour
+public class BulletBase : MonoBehaviour
 {
     private float timer = 0.0f;
 
     // ë∂ç›éûä‘íËêî     Ç±ÇÍÇí¥Ç¶ÇÈÇ∆delete
     const float LIFETIME = 1.5f;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
-    // Update is called once per frame
     void Update()
     {
         timer += Time.deltaTime;
@@ -36,4 +30,5 @@ public class BulletCollider : MonoBehaviour
 
         return false;
     }
+
 }
