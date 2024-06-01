@@ -8,6 +8,8 @@ public class Controller : MonoBehaviour
 {
     // 弾Prefab取得
     [SerializeField] private GameObject bulletPrefab;
+    // 爆弾Prefab取得
+    [SerializeField] private GameObject bombPrefab;
     // 移動スピード
     [SerializeField] private int moveSpeed = 0;
 
@@ -60,20 +62,33 @@ public class Controller : MonoBehaviour
     // 攻撃関数
     private void fire()
     {
-        // 弾の位置調整
+        // 位置調整
         bulletPrefab.transform.position = new Vector3(transform.position.x,transform.position.y + BULLET_OFFSET_Y, transform.position.z);
         
-        // 弾生成
+        // 生成
         Instantiate(bulletPrefab);
     }
 
-    // 移動キーの入力を受け取る
+    // 爆撃関数
+    private void bomb()
+    {
+        // 位置調整
+        bombPrefab.transform.position = new Vector3(transform.position.x, transform.position.y + BULLET_OFFSET_Y, transform.position.z);
+
+        // 生成
+        Instantiate(bombPrefab);
+    }
+
+
+    // 以下キー入力判定関数　================================================
+
+    // 移動
     public void OnMoveEvent(InputAction.CallbackContext context)
     {
         input = context.ReadValue<Vector2>();
     }
 
-    // 攻撃キーの入力を受け取る
+    // 攻撃
     public void OnFireEvent(InputAction.CallbackContext context)
     {        
         // 左クリック or pad右トリガー を押したら
@@ -83,7 +98,7 @@ public class Controller : MonoBehaviour
         }
     }
 
-    // 低速キーの入力を受け取る
+    // 低速
     public void OnLowEvent(InputAction.CallbackContext context)
     {
         // 左クリック or pad右トリガー を押したら
@@ -95,6 +110,16 @@ public class Controller : MonoBehaviour
         else if (context.phase == InputActionPhase.Canceled)
         {
             isLow = false;
+        }
+    }
+
+    // 爆撃
+    public void OnBombEvent(InputAction.CallbackContext context)
+    {
+        // 左クリック or pad右トリガー を押したら
+        if (context.phase == InputActionPhase.Performed)
+        {
+            bomb();
         }
     }
 }
