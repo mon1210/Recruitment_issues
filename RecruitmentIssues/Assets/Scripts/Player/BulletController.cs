@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 public class BulletController : MonoBehaviour
 {
     // ˆÚ“®‘¬“x
-    [SerializeField] private int MOVE_SPEED = 0;
+    [SerializeField] private int moveSpeed = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -22,7 +22,7 @@ public class BulletController : MonoBehaviour
 
     private void move()
     {
-        transform.Translate(0.0f, MOVE_SPEED * Time.deltaTime, 0.0f);
+        transform.Translate(0.0f, moveSpeed * Time.deltaTime, 0.0f);
     }
 
 }
