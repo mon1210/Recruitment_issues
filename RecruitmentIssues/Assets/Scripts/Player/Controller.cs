@@ -37,6 +37,13 @@ public class Controller : MonoBehaviour
 
     void Update()
     {
+        // 被ダメージ
+        if(colliderScript.IsDamage)
+        {
+            life--;
+            colliderScript.IsDamage = false;
+        }
+
         if(life > 0)
         {
             // 移動可能時のみ移動
