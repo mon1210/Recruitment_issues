@@ -11,6 +11,8 @@ public class Collider : MonoBehaviour
 
     // 移動可能かどうかを表すフラグ　変更はここでする
     private bool isMoveAble = true;
+    // 被ダメージフラグ
+    private bool isDamage = false;
     // スクリプト取得　Input用
     private Controller controllerScripts;
 
@@ -20,6 +22,7 @@ public class Collider : MonoBehaviour
     public bool IsMoveAble { get => isMoveAble;}
     public Vector2 S_LeftBottom { get => screenLeftBottom;}
     public Vector2 S_RightTop { get => screenRightTop;}
+    public bool IsDamage { get => isDamage;}
 
     void Start()
     {
@@ -56,6 +59,19 @@ public class Collider : MonoBehaviour
 
 
         return true;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        // EnemyBulletと接触時、被ダメージフラグをON
+        if (collision.CompareTag("EnemyBullet"))
+        {
+            isDamage = true;
+        }
+        else
+        {
+            isDamage = false;
+        }
     }
 
 }
