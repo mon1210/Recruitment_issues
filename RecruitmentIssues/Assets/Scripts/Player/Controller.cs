@@ -96,7 +96,10 @@ public class Controller : MonoBehaviour
     // ˆÚ“®
     public void OnMoveEvent(InputAction.CallbackContext context)
     {
-        input = context.ReadValue<Vector2>();
+        Vector2 rawInput = context.ReadValue<Vector2>();
+
+        // Z²‚Å-90“x‰ñ“]‚µ‚Ä‚¢‚é‚Ì‚ÅA³‚µ‚­ˆÚ“®‚·‚é‚æ‚¤‚É’l‚ğ•ÏŠ·
+        input = new Vector2(-rawInput.y, rawInput.x);
     }
 
     // UŒ‚
