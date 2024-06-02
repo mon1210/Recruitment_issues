@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class EnemyBulletCollider : BulletBase
 {
-    // Start is called before the first frame update
-    void Start()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        // Player‚ÆÚGA©g‚ğíœ
+        if(collision.CompareTag("Player"))
+        {
+            Destroy(this.gameObject);
+            Debug.Log("damage");
+        }
     }
 }
