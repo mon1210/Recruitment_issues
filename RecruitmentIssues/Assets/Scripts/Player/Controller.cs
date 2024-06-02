@@ -22,6 +22,8 @@ public class Controller : MonoBehaviour
     private bool isLow = false;
     // 残り機数
     private int life = 3;
+    // 体力
+    private int hitPoint = 1;
 
     // 弾発射位置調整用定数
     const float BULLET_OFFSET_Y = 1.0f;
@@ -29,6 +31,7 @@ public class Controller : MonoBehaviour
     const float SLOWDOWN_FACTOR = 0.5f;
 
     public Vector2 Input { get => input;}
+    public int HitPoint { get => hitPoint;}
 
     void Start()
     {
@@ -40,23 +43,12 @@ public class Controller : MonoBehaviour
         // 被ダメージ
         if(colliderScript.IsDamage)
         {
-            life--;
+            hitPoint--;
             colliderScript.IsDamage = false;
         }
 
-        if(life > 0)
-        {
-            // 移動可能時のみ移動
-            if (colliderScript.IsMoveAble)
-            {
-                move();
-            }
-        }
-        else
-        {
-            // 機数0でGameOver     Todo 撃破アニメーション終了Eventでシーン遷移
-            SceneManager.LoadScene("GameOverScene");
-        }
+        // HitPoint確認
+        checkHitPoint();
     }
 
     // 移動関数
@@ -95,6 +87,41 @@ public class Controller : MonoBehaviour
 
         // 生成
         Instantiate(bombPrefab);
+    }
+
+    // HitPoint確認
+    private void checkHitPoint()
+    {
+        if (hitPoint > 0)
+        {
+            // 移動可能時のみ移動
+            if (colliderScript.IsMoveAble)
+            {
+                move();
+            }
+        }
+        else
+        {
+            // 自身を非表示
+            this.gameObject.SetActive(false);
+
+            // 爆発アニメーション終了フラグを受け取ったら次に進む
+
+            // 残期減少
+            life--;
+            // 機数0 or リトライしない GameOverへ
+            if (life <= 0 /* or リトライしない */)
+            {
+                SceneManager.LoadScene("GameOverScene");
+            }
+            else if (life > 0 /* && リトライする*/)
+            {
+                // 体力
+                hitPoint = 1;
+
+                this.gameObject.SetActive(true);
+            }
+        }
     }
 
 
