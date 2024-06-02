@@ -74,7 +74,7 @@ public class Controller : MonoBehaviour
     private void fire()
     {
         // 位置調整
-        bulletPrefab.transform.position = new Vector3(transform.position.x,transform.position.y + BULLET_OFFSET_Y, transform.position.z);
+        bulletPrefab.transform.position = new Vector3(transform.position.x + BULLET_OFFSET_Y, transform.position.y, transform.position.z);
         
         // 生成
         Instantiate(bulletPrefab);
@@ -84,7 +84,7 @@ public class Controller : MonoBehaviour
     private void bomb()
     {
         // 位置調整
-        bombPrefab.transform.position = new Vector3(transform.position.x, transform.position.y + BULLET_OFFSET_Y, transform.position.z);
+        bombPrefab.transform.position = new Vector3(transform.position.x + BULLET_OFFSET_Y, transform.position.y, transform.position.z);
 
         // 生成
         Instantiate(bombPrefab);
@@ -96,7 +96,10 @@ public class Controller : MonoBehaviour
     // 移動
     public void OnMoveEvent(InputAction.CallbackContext context)
     {
-        input = context.ReadValue<Vector2>();
+        Vector2 rawInput = context.ReadValue<Vector2>();
+
+        // Z軸で-90度回転しているので、正しく移動するように値を変換
+        input = new Vector2(-rawInput.y, rawInput.x);
     }
 
     // 攻撃
