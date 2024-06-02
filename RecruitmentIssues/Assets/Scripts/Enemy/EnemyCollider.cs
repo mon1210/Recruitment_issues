@@ -4,18 +4,22 @@ using UnityEngine;
 
 public class EnemyCollider : MonoBehaviour
 {
-    // 
-    [SerializeField] Collider colliderScript;
+    // スクリーンサイズ取得用
+    [SerializeField] private GameObject player;
+    private Collider playerCollider;
 
     private EnemyController enemyController;
-    // 移動可能かどうかを表すフラグ　変更はここでする
+    // 移動方向を反転するフラグ
     private bool isMoveAble = true;
 
     // 中心点から画像の半分の大きさ
-    const float OFFSET = 0.9f;
+    const float OFFSET = 1.8f;
+
+    public bool IsMoveAble { get => isMoveAble; }
 
     void Start()
     {
+        playerCollider = player.GetComponent<Collider>();
         enemyController = GetComponent<EnemyController>();
     }
 
@@ -36,8 +40,8 @@ public class EnemyCollider : MonoBehaviour
     private bool isInView()
     {
         // 画面と座標を比較し、画面外に出ようとしているときに移動できないように
-        if ((transform.position.y + OFFSET > colliderScript.S_RightTop.y    /*&& (enemyController.Input.x < 0.0f)*/) ||   // 天井
-            (transform.position.y - OFFSET < colliderScript.S_LeftBottom.y  /*&& (enemyController.Input.x > 0.0f)*/)      // 床
+        if ((transform.position.y + OFFSET > playerCollider.S_RightTop.y)   ||   // 天井
+            (transform.position.y - OFFSET < playerCollider.S_LeftBottom.y)      // 床
             ) { return false; }
 
 
