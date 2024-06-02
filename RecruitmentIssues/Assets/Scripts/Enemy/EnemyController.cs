@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemyController : MonoBehaviour
 {
@@ -9,6 +10,9 @@ public class EnemyController : MonoBehaviour
     // 移動速度
     [SerializeField] private float moveSpeed = 0.0f;
     [SerializeField] private GameObject randomBulletPrefab;
+    // 残り体力
+    [SerializeField] private int hitPoint = 100;
+
     private float moveTimer = 0.0f;
 
     // 移動判定までのタイム
@@ -30,10 +34,27 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(enemyCollider.IsMoveAble)
+        // 被ダメージ
+        if(enemyCollider.IsDamage)
         {
-            move();
+            hitPoint--;
+            enemyCollider.IsDamage = false;
         }
+
+        if(hitPoint > 0)
+        {
+            // 移動可能時のみ移動
+            if (enemyCollider.IsMoveAble)
+            {
+                move();
+            }
+        }
+        else
+        {
+            // 機数0でGameOver     Todo 撃破アニメーション終了Eventでシーン遷移
+            SceneManager.LoadScene("GameOverScene");
+        }
+
     }
 
     // 移動関数
