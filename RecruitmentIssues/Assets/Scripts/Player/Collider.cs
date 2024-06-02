@@ -18,6 +18,8 @@ public class Collider : MonoBehaviour
     const float OFFSET = 0.9f;
 
     public bool IsMoveAble { get => isMoveAble;}
+    public Vector2 S_LeftBottom { get => screenLeftBottom;}
+    public Vector2 S_RightTop { get => screenRightTop;}
 
     void Start()
     {
