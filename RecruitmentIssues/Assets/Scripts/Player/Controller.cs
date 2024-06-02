@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.Windows;
 
 public class Controller : MonoBehaviour
@@ -19,6 +20,8 @@ public class Controller : MonoBehaviour
     private Collider colliderScript;
     // 減速フラグ
     private bool isLow = false;
+    // 残り機数
+    private int life = 3;
 
     // 弾発射位置調整用定数
     const float BULLET_OFFSET_Y = 1.0f;
@@ -34,10 +37,18 @@ public class Controller : MonoBehaviour
 
     void Update()
     {
-        // 移動可能時のみ移動
-        if (colliderScript.IsMoveAble)
+        if(life > 0)
         {
-            move();
+            // 移動可能時のみ移動
+            if (colliderScript.IsMoveAble)
+            {
+                move();
+            }
+        }
+        else
+        {
+            // 機数0でGameOver     Todo 撃破アニメーション終了Eventでシーン遷移
+            SceneManager.LoadScene("GameOverScene");
         }
     }
 
