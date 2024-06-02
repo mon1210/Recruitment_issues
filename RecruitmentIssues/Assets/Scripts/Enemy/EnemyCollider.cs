@@ -11,11 +11,14 @@ public class EnemyCollider : MonoBehaviour
     private EnemyController enemyController;
     // 移動方向を反転するフラグ
     private bool isMoveAble = true;
+    // 被ダメージフラグ
+    private bool isDamage = false;
 
     // 中心点から画像の半分の大きさ
     const float OFFSET = 1.8f;
 
     public bool IsMoveAble { get => isMoveAble; }
+    public bool IsDamage { get => isDamage; set => isDamage = value; }
 
     void Start()
     {
@@ -46,5 +49,14 @@ public class EnemyCollider : MonoBehaviour
 
 
         return true;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        // PlayerBulletと接触時ダメージフラグON
+        if (collision.CompareTag("PlayerBullet"))
+        {
+            isDamage = true;
+        }
     }
 }
