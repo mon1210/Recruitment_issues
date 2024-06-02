@@ -10,7 +10,6 @@ public class EnemyBulletCollider : BulletBase
         if(collision.CompareTag("Player"))
         {
             Destroy(this.gameObject);
-            Debug.Log("damage");
         }
     }
 }
