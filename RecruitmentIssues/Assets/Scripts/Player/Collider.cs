@@ -46,10 +46,10 @@ public class Collider : MonoBehaviour
     private bool isInView()
     {
         // 画面と座標を比較し、画面外に出ようとしているときに移動できないように
-        if ((transform.position.x - OFFSET < screenLeftBottom.x && (controllerScripts.Input.x < 0.0f)) ||   // 左端
-            (transform.position.x + OFFSET > screenRightTop.x   && (controllerScripts.Input.x > 0.0f)) ||   // 右端
-            (transform.position.y + OFFSET > screenRightTop.y   && (controllerScripts.Input.y > 0.0f)) ||   // 天井
-            (transform.position.y - OFFSET < screenLeftBottom.y && (controllerScripts.Input.y < 0.0f))      // 床
+        if ((transform.position.x - OFFSET < screenLeftBottom.x && (controllerScripts.Input.y < 0.0f)) ||   // 左端
+            (transform.position.x + OFFSET > screenRightTop.x   && (controllerScripts.Input.y > 0.0f)) ||   // 右端
+            (transform.position.y + OFFSET > screenRightTop.y   && (controllerScripts.Input.x < 0.0f)) ||   // 天井
+            (transform.position.y - OFFSET < screenLeftBottom.y && (controllerScripts.Input.x > 0.0f))      // 床
             ) { return false; }
 
 
