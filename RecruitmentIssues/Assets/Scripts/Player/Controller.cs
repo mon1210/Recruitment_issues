@@ -74,7 +74,7 @@ public class Controller : MonoBehaviour
     private void fire()
     {
         // à íuí≤êÆ
-        bulletPrefab.transform.position = new Vector3(transform.position.x,transform.position.y + BULLET_OFFSET_Y, transform.position.z);
+        bulletPrefab.transform.position = new Vector3(transform.position.x + BULLET_OFFSET_Y, transform.position.y, transform.position.z);
         
         // ê∂ê¨
         Instantiate(bulletPrefab);
@@ -84,7 +84,7 @@ public class Controller : MonoBehaviour
     private void bomb()
     {
         // à íuí≤êÆ
-        bombPrefab.transform.position = new Vector3(transform.position.x, transform.position.y + BULLET_OFFSET_Y, transform.position.z);
+        bombPrefab.transform.position = new Vector3(transform.position.x + BULLET_OFFSET_Y, transform.position.y, transform.position.z);
 
         // ê∂ê¨
         Instantiate(bombPrefab);
