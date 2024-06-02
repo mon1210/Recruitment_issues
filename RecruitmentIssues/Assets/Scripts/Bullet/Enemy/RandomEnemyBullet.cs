@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RandomEnemyBullet : BulletBase
+public class RandomEnemyBullet : MonoBehaviour
 {
     // •ûŒü
     private Vector3 direction = Vector3.zero;
