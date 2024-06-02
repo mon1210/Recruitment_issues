@@ -22,7 +22,7 @@ public class Collider : MonoBehaviour
     public bool IsMoveAble { get => isMoveAble;}
     public Vector2 S_LeftBottom { get => screenLeftBottom;}
     public Vector2 S_RightTop { get => screenRightTop;}
-    public bool IsDamage { get => isDamage;}
+    public bool IsDamage { get => isDamage; set => isDamage = value; }
 
     void Start()
     {
@@ -67,10 +67,6 @@ public class Collider : MonoBehaviour
         if (collision.CompareTag("EnemyBullet"))
         {
             isDamage = true;
-        }
-        else
-        {
-            isDamage = false;
         }
     }
 
