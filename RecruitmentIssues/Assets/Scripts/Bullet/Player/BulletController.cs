@@ -22,6 +22,7 @@ public class BulletController : MonoBehaviour
 
     private void move()
     {
+        // Z軸で-90度回転しているので、Y軸方向にプラスで右移動
         transform.Translate(0.0f, moveSpeed * Time.deltaTime, 0.0f);
     }
 
