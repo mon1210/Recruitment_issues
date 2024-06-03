@@ -12,12 +12,19 @@ public class RandomEnemyBullet : MonoBehaviour
     void Start()
     {     
         // ランダムな角度を取得
-        float angle = Random.Range(0f, 360f);
+        float Angle = Random.Range(0f, 360f);
         // 弧度法へ変換
-        float radians = angle * Mathf.Deg2Rad;
+        float Radians = Angle * Mathf.Deg2Rad;
+
+        // 弾がプレイヤー側に来るようにする
+        float DirectionX = Mathf.Cos(Radians);
+        if(DirectionX > 0)
+        {
+            DirectionX *= -1;
+        }
 
         // 方向ベクトルを設定
-        direction = new Vector3(Mathf.Cos(radians), Mathf.Sin(radians), 0);
+        direction = new Vector3(DirectionX, Mathf.Sin(Radians), 0);
 
     }
 
