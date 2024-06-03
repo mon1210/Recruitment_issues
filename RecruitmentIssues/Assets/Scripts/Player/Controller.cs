@@ -49,8 +49,8 @@ public class Controller : MonoBehaviour
             colliderScript.IsDamage = false;
         }
 
-        // HitPoint確認
-        checkHitPoint();
+        // 残機確認
+        checkLife();
     }
 
     // 移動関数
@@ -91,8 +91,8 @@ public class Controller : MonoBehaviour
         Instantiate(bombPrefab);
     }
 
-    // HitPoint確認
-    private void checkHitPoint()
+    // 残機確認
+    private void checkLife()
     {
         if (life > 0)
         {
