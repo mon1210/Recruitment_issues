@@ -7,7 +7,7 @@ public class EnemyBulletCollider : BulletBase
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // Player‚ÆÚGA©g‚ğíœ
-        if(collision.CompareTag("Player"))
+        if(collision.CompareTag("Player") || collision.CompareTag("PlayerBullet"))
         {
             Destroy(this.gameObject);
         }
