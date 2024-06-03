@@ -17,20 +17,30 @@ public class Controller : MonoBehaviour
     [SerializeField] private LifeStarSpawner lifeStarsSpawner;
     // 移動スピード
     [SerializeField] private int moveSpeed = 0;
+    // 点滅周期
+    [SerializeField] private float blinkInterval = 0.0f;
 
     // キー入力を受け取って保存する用
     private Vector2 input = Vector2.zero;
-    // スクリプト取得　IsMoveAble用
+
     private Collider colliderScript;
+    private SpriteRenderer spriteRenderer;
     // 減速フラグ
     private bool isLow = false;
+    // 点滅フラグ
+    private bool isBlink = false;
     // 残り機数
     private int life = 3;
+
+    private float timer = 0.0f;
+    private float blinkTimer = 0.0f;
 
     // 弾発射位置調整用定数
     const float BULLET_OFFSET_Y = 1.0f;
     // 移動速度原則倍率定数
     const float SLOWDOWN_FACTOR = 0.5f;
+    // 点滅時間
+    const float BLINK_TIME = 1.0f;
 
     public Vector2 Input { get => input;}
     public int Life { get => life;}
@@ -38,6 +48,8 @@ public class Controller : MonoBehaviour
     void Start()
     {
         colliderScript = GetComponent<Collider>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        blinkTimer = BLINK_TIME;
     }
 
     void Update()
@@ -47,9 +59,14 @@ public class Controller : MonoBehaviour
         {
             life--;
             colliderScript.IsDamage = false;
+            isBlink = true;
             // 残機UI更新
             lifeStarsSpawner.UpdateLifeStarsUI(life);
+
         }
+
+        // 点滅処理管理
+        manageBlinking();
 
         // 残機確認
         checkLife();
@@ -121,6 +138,45 @@ public class Controller : MonoBehaviour
         explosionPrefab.transform.position = transform.position;
 
         Instantiate(explosionPrefab);
+    }
+
+    // 点滅処理
+    private void blinking()
+    {
+        // 内部時刻を経過させる
+        timer += Time.deltaTime;
+
+        // timer～blinkIntervalの間で繰り返し値を取得
+        float repeatValue = Mathf.Repeat((float)timer, blinkInterval);
+
+        // インターバルの半分以上の時は表示
+        if (repeatValue >= blinkInterval * 0.5f)
+        {
+            spriteRenderer.enabled = true;
+        }
+        else
+        {
+            spriteRenderer.enabled = false;
+        }
+    }
+
+    // 点滅が指定した秒間続くようにする
+    private void manageBlinking()
+    {
+        if (isBlink)
+        {
+            blinkTimer -= Time.deltaTime;
+            if (blinkTimer > 0)
+            {
+                blinking();
+            }
+            else
+            {
+                // リセット
+                blinkTimer = BLINK_TIME;
+                isBlink = false;
+            }
+        }
     }
 
     // 以下キー入力判定関数　================================================
