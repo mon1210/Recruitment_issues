@@ -31,6 +31,7 @@ public class Controller : MonoBehaviour
     const float SLOWDOWN_FACTOR = 0.5f;
 
     public Vector2 Input { get => input;}
+    public int Life { get => life;}
 
     void Start()
     {
