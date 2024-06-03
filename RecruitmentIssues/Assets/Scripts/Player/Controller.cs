@@ -23,9 +23,7 @@ public class Controller : MonoBehaviour
     // 減速フラグ
     private bool isLow = false;
     // 残り機数
-    private int life = 1;
-    // 体力
-    private int hitPoint = 1;
+    private int life = 3;
 
     // 弾発射位置調整用定数
     const float BULLET_OFFSET_Y = 1.0f;
@@ -33,7 +31,7 @@ public class Controller : MonoBehaviour
     const float SLOWDOWN_FACTOR = 0.5f;
 
     public Vector2 Input { get => input;}
-    public int HitPoint { get => hitPoint;}
+    public int Life { get => life;}
 
     void Start()
     {
@@ -49,8 +47,8 @@ public class Controller : MonoBehaviour
             colliderScript.IsDamage = false;
         }
 
-        // HitPoint確認
-        checkHitPoint();
+        // 残機確認
+        checkLife();
     }
 
     // 移動関数
@@ -91,8 +89,8 @@ public class Controller : MonoBehaviour
         Instantiate(bombPrefab);
     }
 
-    // HitPoint確認
-    private void checkHitPoint()
+    // 残機確認
+    private void checkLife()
     {
         if (life > 0)
         {
