@@ -31,9 +31,12 @@ public class Controller : MonoBehaviour
     private bool isBlink = false;
     // 残り機数
     private int life = 3;
+    // 現在の弾数
+    private int currentBullet = 5;
 
     private float timer = 0.0f;
     private float blinkTimer = 0.0f;
+    private float reloadTimer = 0.0f;
 
     // 弾発射位置調整用定数
     const float BULLET_OFFSET_Y = 1.0f;
@@ -41,6 +44,10 @@ public class Controller : MonoBehaviour
     const float SLOWDOWN_FACTOR = 0.5f;
     // 点滅時間
     const float BLINK_TIME = 1.0f;
+    // 装填時間
+    const float RELOAD_TIME = 1.5f;
+    // 最大弾数
+    const int MAX_BULLET = 5;
 
     public Vector2 Input { get => input;}
     public int Life { get => life;}
@@ -50,6 +57,8 @@ public class Controller : MonoBehaviour
         colliderScript = GetComponent<Collider>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         blinkTimer = BLINK_TIME;
+        reloadTimer = RELOAD_TIME; 
+        currentBullet = MAX_BULLET;
     }
 
     void Update()
@@ -63,6 +72,12 @@ public class Controller : MonoBehaviour
             // 残機UI更新
             lifeStarsSpawner.UpdateLifeStarsUI(life);
 
+        }
+
+        // リロード
+        if (currentBullet <= 0)
+        {
+            reload();
         }
 
         // 点滅処理管理
@@ -93,6 +108,8 @@ public class Controller : MonoBehaviour
     // 攻撃関数
     private void fire()
     {
+        currentBullet--;
+
         // 位置調整
         bulletPrefab.transform.position = new Vector3(transform.position.x + BULLET_OFFSET_Y, transform.position.y, transform.position.z);
         
@@ -179,6 +196,19 @@ public class Controller : MonoBehaviour
         }
     }
 
+    // リロード関数
+    private void reload()
+    {
+        reloadTimer -= Time.deltaTime;
+        if(reloadTimer <= 0)
+        {
+            // リセット
+            currentBullet = MAX_BULLET;
+            reloadTimer = RELOAD_TIME;
+        }
+
+    }
+
     // 以下キー入力判定関数　================================================
 
     // 移動
@@ -192,9 +222,9 @@ public class Controller : MonoBehaviour
 
     // 攻撃
     public void OnFireEvent(InputAction.CallbackContext context)
-    {        
+    {
         // 左クリック or pad右トリガー を押したら
-        if (context.phase == InputActionPhase.Performed)
+        if (context.phase == InputActionPhase.Performed && currentBullet > 0)
         {
             fire();
         }
