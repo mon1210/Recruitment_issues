@@ -18,7 +18,7 @@ public class EnemyController : MonoBehaviour
     // 移動判定までのタイム
     const float REVERSE_MOVE_TIME = 3.0f;
     // 発射間隔定数
-    const float FIRE_INTERVAL = 0.5f;
+    const float FIRE_INTERVAL = 0.25f;
     // 弾発射位置調整用定数
     const float BULLET_OFFSET_X = 1.0f;
 
