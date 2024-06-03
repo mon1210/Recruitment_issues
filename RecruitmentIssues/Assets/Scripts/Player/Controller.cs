@@ -11,6 +11,8 @@ public class Controller : MonoBehaviour
     [SerializeField] private GameObject bulletPrefab;
     // 爆弾Prefab取得
     [SerializeField] private GameObject bombPrefab;
+    // 爆発エフェクトPrefab取得
+    [SerializeField] private GameObject explosionPrefab;
     // 移動スピード
     [SerializeField] private int moveSpeed = 0;
 
@@ -21,7 +23,7 @@ public class Controller : MonoBehaviour
     // 減速フラグ
     private bool isLow = false;
     // 残り機数
-    private int life = 3;
+    private int life = 1;
     // 体力
     private int hitPoint = 1;
 
@@ -43,7 +45,7 @@ public class Controller : MonoBehaviour
         // 被ダメージ
         if(colliderScript.IsDamage)
         {
-            hitPoint--;
+            life--;
             colliderScript.IsDamage = false;
         }
 
@@ -92,7 +94,7 @@ public class Controller : MonoBehaviour
     // HitPoint確認
     private void checkHitPoint()
     {
-        if (hitPoint > 0)
+        if (life > 0)
         {
             // 移動可能時のみ移動
             if (colliderScript.IsMoveAble)
@@ -106,24 +108,18 @@ public class Controller : MonoBehaviour
             this.gameObject.SetActive(false);
 
             // 爆発アニメーション終了フラグを受け取ったら次に進む
+            explosionEffect();
 
-            // 残期減少
-            life--;
-            // 機数0 or リトライしない GameOverへ
-            if (life <= 0 /* or リトライしない */)
-            {
-                SceneManager.LoadScene("GameOverScene");
-            }
-            else if (life > 0 /* && リトライする*/)
-            {
-                // 体力
-                hitPoint = 1;
-
-                this.gameObject.SetActive(true);
-            }
         }
     }
 
+    // エフェクト生成
+    private void explosionEffect()
+    {
+        explosionPrefab.transform.position = transform.position;
+
+        Instantiate(explosionPrefab);
+    }
 
     // 以下キー入力判定関数　================================================
 
