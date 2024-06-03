@@ -13,6 +13,8 @@ public class Controller : MonoBehaviour
     [SerializeField] private GameObject bombPrefab;
     // 爆発エフェクトPrefab取得
     [SerializeField] private GameObject explosionPrefab;
+    // 残機表示用UIオブジェクト取得
+    [SerializeField] private LifeStarSpawner lifeStarsSpawner;
     // 移動スピード
     [SerializeField] private int moveSpeed = 0;
 
@@ -45,6 +47,8 @@ public class Controller : MonoBehaviour
         {
             life--;
             colliderScript.IsDamage = false;
+            // 残機UI更新
+            lifeStarsSpawner.UpdateLifeStarsUI(life);
         }
 
         // 残機確認
