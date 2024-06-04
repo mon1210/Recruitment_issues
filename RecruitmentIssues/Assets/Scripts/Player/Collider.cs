@@ -63,8 +63,8 @@ public class Collider : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // EnemyBulletと接触時、被ダメージフラグをON
-        if (collision.CompareTag("EnemyBullet"))
+        // Enemyの弾と接触時、被ダメージフラグをON
+        if (collision.CompareTag("RandomBullet") || collision.CompareTag("AimedBullet") || collision.CompareTag("ChaseBullet"))
         {
             isDamage = true;
         }
