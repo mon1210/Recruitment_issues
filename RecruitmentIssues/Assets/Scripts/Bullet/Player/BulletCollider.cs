@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BulletCollider : BulletBase
 {
-    [SerializeField] private ScoreManager scoreManagerScript;
+    private ScoreManager scoreManager;
 
     // ランダムにばらまかれる弾の点数
     const int RANDOM_BULLET_SCORE = 3;
@@ -15,7 +15,8 @@ public class BulletCollider : BulletBase
 
     void Start()
     {
-        scoreManagerScript = GetComponent<ScoreManager>();
+        // PlayerBulletがPrefabのため、Findを使用
+        scoreManager = GameObject.Find("Score").GetComponent<ScoreManager>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -26,14 +27,14 @@ public class BulletCollider : BulletBase
             Destroy(this.gameObject);
         }
 
-        // Score加算 --------------------------
+        // Score加算 ---------------------------------------
         // ランダム
         if (collision.CompareTag("RandomBullet"))
         {
             Destroy(this.gameObject);
 
             // スコア加算
-            scoreManagerScript.AddScore(RANDOM_BULLET_SCORE);
+            scoreManager.AddScore(RANDOM_BULLET_SCORE);
         }
         //// Playerに向かっていく
         //else if (collision.CompareTag("AimedBullet"))
@@ -41,14 +42,14 @@ public class BulletCollider : BulletBase
         //    Destroy(this.gameObject);
 
         //    // スコア加算
-        //    scoreManagerScript.AddScore(AIMED_BULLET_SCORE);
+        //    scoreManager.AddScore(AIMED_BULLET_SCORE);
         //}
         //// 追跡
         //else if (collision.CompareTag("ChaseBullet"))
         //{
         //    Destroy(this.gameObject);
 
-        //    scoreManagerScript.AddScore(CHASE_BULLET_SCORE);
+        //    scoreManager.AddScore(CHASE_BULLET_SCORE);
         //}
     }
 }
