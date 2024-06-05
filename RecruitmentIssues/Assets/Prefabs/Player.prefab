@@ -105,7 +105,7 @@ MonoBehaviour:
   explosionPrefab: {fileID: 3330296832131561095, guid: e86da9baee5763e488b17ae3f5cc4854, type: 3}
   lifeStarsSpawner: {fileID: 0}
   moveSpeed: 8
-  blinkInterval: 0
+  blinkInterval: 0.2
 --- !u!114 &4334380004262227841
 MonoBehaviour:
   m_ObjectHideFlags: 0

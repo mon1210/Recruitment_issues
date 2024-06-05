@@ -9,11 +9,27 @@ public class BombController : MonoBehaviour
 
     private SpriteRenderer spriteRenderer;
     private float timer = 0.0f;
+    // îöî≠ÇµÇΩÇ©Ç«Ç§Ç©Çîªíf
+    private bool isExplosion = false;
+
+    // îöî≠Ç‹Ç≈ÇÃéûä‘
+    const float EXPLOSION_TIMER = 1.5f;
+
+    public bool IsExplosion { get => isExplosion;}
 
     // Start is called before the first frame update
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+        // î≠ê∂å„ÅAàÍïbå„Ç…îöî≠
+        Invoke("destroy", EXPLOSION_TIMER);
+    }
+
+    private void destroy()
+    {
+        isExplosion = true;
+        Destroy(gameObject);
     }
 
     void Update()
