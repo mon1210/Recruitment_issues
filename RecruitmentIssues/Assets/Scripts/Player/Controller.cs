@@ -9,8 +9,6 @@ public class Controller : MonoBehaviour
 {
     // 弾Prefab取得
     [SerializeField] private GameObject bulletPrefab;
-    // 爆弾Prefab取得
-    [SerializeField] private GameObject bombPrefab;
     // 爆発エフェクトPrefab取得
     [SerializeField] private GameObject explosionPrefab;
     // 残機表示用UIオブジェクト取得
@@ -29,6 +27,8 @@ public class Controller : MonoBehaviour
     private bool isLow = false;
     // 点滅フラグ
     private bool isBlink = false;
+    // 爆弾生成フラグ
+    private bool isBombInstantiate = false;
     // 残り機数
     private int life = 3;
     // 現在の弾数
@@ -51,6 +51,7 @@ public class Controller : MonoBehaviour
 
     public Vector2 Input { get => input;}
     public int Life { get => life;}
+    public bool IsBombInstantiate { get => isBombInstantiate; set => isBombInstantiate = value; }
 
     void Start()
     {
@@ -120,11 +121,7 @@ public class Controller : MonoBehaviour
     // 爆撃関数
     private void bomb()
     {
-        // 位置調整
-        bombPrefab.transform.position = new Vector3(transform.position.x + BULLET_OFFSET_Y, transform.position.y, transform.position.z);
-
-        // 生成
-        Instantiate(bombPrefab);
+        isBombInstantiate = true;
     }
 
     // 残機確認
