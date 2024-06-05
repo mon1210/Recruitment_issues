@@ -8,7 +8,6 @@ public class EnemyCollider : MonoBehaviour
     [SerializeField] private GameObject player;
     private Collider playerCollider;
 
-    private EnemyController enemyController;
     // 移動方向を反転するフラグ
     private bool isMoveAble = true;
     // 被ダメージフラグ
@@ -23,7 +22,6 @@ public class EnemyCollider : MonoBehaviour
     void Start()
     {
         playerCollider = player.GetComponent<Collider>();
-        enemyController = GetComponent<EnemyController>();
     }
 
     void Update()
