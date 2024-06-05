@@ -103,7 +103,9 @@ MonoBehaviour:
   bulletPrefab: {fileID: 2718735275251740865, guid: 0fab89858c4d56a4e85b0e3543e46483, type: 3}
   bombPrefab: {fileID: 1434784624064635310, guid: 3a90ac14f6387d04f9ebf407351daff7, type: 3}
   explosionPrefab: {fileID: 3330296832131561095, guid: e86da9baee5763e488b17ae3f5cc4854, type: 3}
+  lifeStarsSpawner: {fileID: 0}
   moveSpeed: 8
+  blinkInterval: 0
 --- !u!114 &4334380004262227841
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,7 +147,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
