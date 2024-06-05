@@ -31,6 +31,8 @@ public class Controller : MonoBehaviour
     private int life = 3;
     // Œ»Ý‚Ì’e”
     private int currentBullet = 5;
+    // Œ»Ý‚Ì”š’e”
+    private int currentBomb = 3;
 
     private float timer = 0.0f;
     private float blinkTimer = 0.0f;
@@ -46,10 +48,13 @@ public class Controller : MonoBehaviour
     const float RELOAD_TIME = 1.5f;
     // Å‘å’e”
     const int MAX_BULLET = 5;
+    // Å‘å”š’e”
+    const int MAX_BOMB = 3;
 
     public Vector2 Input { get => input;}
     public int Life { get => life;}
     public bool IsBombInstantiate { get => isBombInstantiate; set => isBombInstantiate = value; }
+    public int CurrentBomb { get => currentBomb;}
 
     void Start()
     {
@@ -58,6 +63,7 @@ public class Controller : MonoBehaviour
         blinkTimer = BLINK_TIME;
         reloadTimer = RELOAD_TIME; 
         currentBullet = MAX_BULLET;
+        currentBomb = MAX_BOMB;
     }
 
     void Update()
@@ -119,6 +125,7 @@ public class Controller : MonoBehaviour
     // ”šŒ‚ŠÖ”
     private void bomb()
     {
+        currentBomb--;
         isBombInstantiate = true;
     }
 
@@ -243,8 +250,8 @@ public class Controller : MonoBehaviour
     // ”šŒ‚
     public void OnBombEvent(InputAction.CallbackContext context)
     {
-        // ¶ƒNƒŠƒbƒN or pad‰EƒgƒŠƒK[ ‚ð‰Ÿ‚µ‚½‚ç
-        if (context.phase == InputActionPhase.Performed)
+        // ¶ƒNƒŠƒbƒN or pad‰EƒgƒŠƒK[ ‚ð‰Ÿ‚µ‚½‚ç  ”š’e‚ªŽc‚Á‚Ä‚¢‚é‚Æ‚«
+        if (context.phase == InputActionPhase.Performed && currentBomb > 0)
         {
             bomb();
         }
