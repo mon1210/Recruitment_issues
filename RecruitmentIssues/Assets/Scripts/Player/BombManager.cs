@@ -4,36 +4,26 @@ using UnityEngine;
 
 /// <summary>
 /// Bombにのみスクリプトがあると、別オブジェクトで参照できないので管理スクリプトを用意
+/// Bombだとすぐに自身が消えてしまうので、敵の弾を削除しきれない
 /// </summary>
 public class BombManager : MonoBehaviour
 {
     [SerializeField] private GameObject bombPrefab;
     
     private Controller controllerScript;
-
-    // 爆発したかどうかを判断
-    private bool isExplosion = false;
+    private float timer = 0;
+    private bool isTimerStart = false;
 
     // 発射位置調整用定数
     const float OFFSET_Y = 1.0f;
     // 爆発までの時間
-    const float EXPLOSION_TIMER = 1.5f;
-
-    public bool IsExplosion { get => isExplosion; set => isExplosion = value; }
+    const float EXPLOSION_START = 1.5f;
+    // 爆発終了時間
+    const float EXPLOSION_END = 2.0f;
 
     void Start()
     {
         controllerScript = GetComponent<Controller>();
-
-        // 発生後、一秒後に爆発
-        Invoke("isDestroy", EXPLOSION_TIMER);
-    }
-
-    // 消えたかどうかを判断
-    private void isDestroy()
-    {
-        // 別の箇所でfalseにする
-        isExplosion = true;
     }
 
     void Update()
@@ -47,7 +37,26 @@ public class BombManager : MonoBehaviour
             Instantiate(bombPrefab);
 
             controllerScript.IsBombInstantiate = false;
+
+            isTimerStart = true;
+        }
+
+        // 爆発
+        if (isTimerStart)
+        {
+            timer += Time.deltaTime;
+            // 0.5秒間、敵の弾削除
+            if(timer >= EXPLOSION_START)
+            {
+                GameObject randomB = GameObject.FindWithTag("RandomBullet");
+                Destroy(randomB);
+            }
+            // リセット
+            if(timer >= EXPLOSION_END)
+            {
+                timer = 0;
+                isTimerStart = false;
+            }
         }
     }
-
 }
