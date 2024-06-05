@@ -13,7 +13,6 @@ public class BombController : MonoBehaviour
     // ”š”­‚Ü‚Å‚ÌŽžŠÔ
     const float EXPLOSION_TIMER = 1.5f;
 
-    // Start is called before the first frame update
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
