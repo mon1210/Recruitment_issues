@@ -116,10 +116,10 @@ public class Controller : MonoBehaviour
         currentBullet--;
 
         // 位置調整
-        bulletPrefab.transform.position = new Vector3(transform.position.x + BULLET_OFFSET_Y, transform.position.y, transform.position.z);
+        Vector3 Pos = new Vector3(transform.position.x + BULLET_OFFSET_Y, transform.position.y, transform.position.z);
         
         // 生成
-        Instantiate(bulletPrefab);
+        Instantiate(bulletPrefab, Pos, Quaternion.identity);
     }
 
     // 爆撃関数
@@ -154,9 +154,7 @@ public class Controller : MonoBehaviour
     // エフェクト生成
     private void explosionEffect()
     {
-        explosionPrefab.transform.position = transform.position;
-
-        Instantiate(explosionPrefab);
+        Instantiate(explosionPrefab, transform.position, Quaternion.identity);
     }
 
     // 点滅処理

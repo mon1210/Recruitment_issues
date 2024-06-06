@@ -39,10 +39,10 @@ public class BombManager : MonoBehaviour
         if(controllerScript.IsBombInstantiate)
         {
             // à íuí≤êÆ(Ç±ÇÃèÍçáÇÃtransform.positionÇÕPlayer)
-            bombPrefab.transform.position = new Vector3(transform.position.x + OFFSET_Y, transform.position.y, transform.position.z);
+            Vector3 Pos = new Vector3(transform.position.x + OFFSET_Y, transform.position.y, transform.position.z);
 
             // ê∂ê¨
-            Instantiate(bombPrefab);
+            Instantiate(bombPrefab, Pos, Quaternion.identity);
 
             controllerScript.IsBombInstantiate = false;
 
