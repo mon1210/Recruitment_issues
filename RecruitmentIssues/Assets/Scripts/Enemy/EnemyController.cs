@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class EnemyController : MonoBehaviour
 {
     private EnemyCollider enemyCollider;
+    private EnemyBulletManager enemyBulletManager;
     // 移動速度
     [SerializeField] private float moveSpeed = 0.0f;
     [SerializeField] private GameObject randomBulletPrefab;
@@ -25,6 +26,7 @@ public class EnemyController : MonoBehaviour
     void Start()
     {
         enemyCollider = GetComponent<EnemyCollider>();
+        enemyBulletManager = GetComponent<EnemyBulletManager>();
 
         // ランダムな弾の生成を開始
         StartCoroutine(SpawnRandomBullet());
@@ -77,10 +79,13 @@ public class EnemyController : MonoBehaviour
     {
         while (true) 
         { 
-            randomBulletPrefab.transform.position = new Vector3(transform.position.x - BULLET_OFFSET_X, transform.position.y, transform.position.z); ;
-
+            Vector3 Pos = new Vector3(transform.position.x - BULLET_OFFSET_X, transform.position.y, transform.position.z);
+            
             // 生成
-            Instantiate(randomBulletPrefab);
+            GameObject RandomBullet = Instantiate(randomBulletPrefab, Pos, Quaternion.identity);
+            
+            // リストに追加
+            enemyBulletManager.AddBulletList("Random", RandomBullet);
 
             // インターバルを待つ
             yield return new WaitForSeconds(FIRE_INTERVAL);
