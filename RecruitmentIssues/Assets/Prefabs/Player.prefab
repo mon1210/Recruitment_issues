@@ -131,6 +131,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bombPrefab: {fileID: 1434784624064635310, guid: 3a90ac14f6387d04f9ebf407351daff7, type: 3}
+  enemy: {fileID: 1976069089976511967, guid: 38f932043d0caca45bb91a545d7c7bee, type: 3}
+  scoreText: {fileID: 0}
 --- !u!58 &-5772420417556622742
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -9,8 +9,12 @@ using UnityEngine;
 public class BombManager : MonoBehaviour
 {
     [SerializeField] private GameObject bombPrefab;
+    [SerializeField] private GameObject enemy;
+    [SerializeField] private GameObject scoreText;
     
     private Controller controllerScript;
+    private EnemyBulletManager enemyBulletManager;
+    private ScoreManager scoreManager;
     private float timer = 0;
     private bool isTimerStart = false;
 
@@ -20,10 +24,14 @@ public class BombManager : MonoBehaviour
     const float EXPLOSION_START = 1.5f;
     // 爆発終了時間
     const float EXPLOSION_END = 2.0f;
+    // ランダム生成の弾を爆弾で壊したときのスコア
+    const int RANDOM_BULLET_BREAK_SCORE = 10;
 
     void Start()
     {
         controllerScript = GetComponent<Controller>();
+        enemyBulletManager = enemy.GetComponent<EnemyBulletManager>();
+        scoreManager = scoreText.GetComponent<ScoreManager>();
     }
 
     void Update()
@@ -48,8 +56,8 @@ public class BombManager : MonoBehaviour
             // 0.5秒間、敵の弾削除
             if(timer >= EXPLOSION_START)
             {
-                GameObject randomB = GameObject.FindWithTag("RandomBullet");
-                Destroy(randomB);
+                int DestroyedCount = enemyBulletManager.DestroyAllBullets("Random");
+                scoreManager.AddScore(DestroyedCount * RANDOM_BULLET_BREAK_SCORE);
             }
             // リセット
             if(timer >= EXPLOSION_END)
