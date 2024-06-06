@@ -116,10 +116,10 @@ public class Controller : MonoBehaviour
         currentBullet--;
 
         // à íuí≤êÆ
-        Vector3 Pos = new Vector3(transform.position.x + BULLET_OFFSET_Y, transform.position.y, transform.position.z);
+        bulletPrefab.transform.position = new Vector3(transform.position.x + BULLET_OFFSET_Y, transform.position.y, transform.position.z);
         
         // ê∂ê¨
-        Instantiate(bulletPrefab, Pos, Quaternion.identity);
+        Instantiate(bulletPrefab);
     }
 
     // îöåÇä÷êî
