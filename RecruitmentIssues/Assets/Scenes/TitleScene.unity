@@ -687,6 +687,7 @@ GameObject:
   m_Component:
   - component: {fileID: 841670110}
   - component: {fileID: 841670112}
+  - component: {fileID: 841670113}
   - component: {fileID: 841670111}
   m_Layer: 5
   m_Name: Guidance
@@ -758,6 +759,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 841670109}
   m_CullTransparentMesh: 1
+--- !u!114 &841670113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 841670109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42d210f63ce6bd74e931726743b96e84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 841670111}
 --- !u!1 &999818392
 GameObject:
   m_ObjectHideFlags: 0
@@ -850,7 +864,7 @@ MonoBehaviour:
     m_ActionName: UI/TrackedDeviceOrientation
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1584621037}
+      - m_Target: {fileID: 841670113}
         m_TargetAssemblyTypeName: TitleManager, Assembly-CSharp
         m_MethodName: OnStart
         m_Mode: 0
@@ -1196,7 +1210,6 @@ GameObject:
   - component: {fileID: 1584621034}
   - component: {fileID: 1584621036}
   - component: {fileID: 1584621035}
-  - component: {fileID: 1584621037}
   m_Layer: 5
   m_Name: Title
   m_TagString: Untagged
@@ -1265,18 +1278,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1584621033}
   m_CullTransparentMesh: 1
---- !u!114 &1584621037
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1584621033}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 42d210f63ce6bd74e931726743b96e84, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1652002133
 GameObject:
   m_ObjectHideFlags: 0
