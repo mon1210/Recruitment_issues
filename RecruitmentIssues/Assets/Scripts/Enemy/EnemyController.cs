@@ -45,6 +45,12 @@ public class EnemyController : CharacterBase
         // 基底クラスのUpdate呼び出し
         base.Update();
 
+        // 点滅以外で赤になっていた場合、色修正
+        if (!isBlink && spriteRenderer.color == Color.red)
+        {
+            spriteRenderer.color = Color.white;
+        }
+
         // 被ダメージ
         if (enemyCollider.IsDamage)
         {
