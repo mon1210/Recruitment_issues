@@ -198,7 +198,7 @@ public class Controller : CharacterBase
     public void OnFireEvent(InputAction.CallbackContext context)
     {
         // 左クリック or pad右トリガー を押したら
-        if (context.phase == InputActionPhase.Performed && currentBullet > 0)
+        if (context.phase == InputActionPhase.Performed && currentBullet > 0 && life > 0)
         {
             fire();
         }
@@ -223,7 +223,7 @@ public class Controller : CharacterBase
     public void OnBombEvent(InputAction.CallbackContext context)
     {
         // 左クリック or pad右トリガー を押したら  爆弾が残っているとき
-        if (context.phase == InputActionPhase.Performed && currentBomb > 0)
+        if (context.phase == InputActionPhase.Performed && currentBomb > 0 && life > 0)
         {
             bomb();
         }
