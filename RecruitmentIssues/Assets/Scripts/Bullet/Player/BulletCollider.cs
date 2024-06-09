@@ -9,7 +9,7 @@ public class BulletCollider : BulletBase
     // ランダムにばらまかれる弾の点数
     const int RANDOM_BULLET_SCORE = 3;
     // Playerに向かって飛ぶ弾の点数
-    //const int AIMED_BULLET_SCORE = 3; 
+    const int AIMED_BULLET_SCORE = 5; 
     // 追跡する弾の点数
     //const int CHASE_BULLET_SCORE = 3;
 
@@ -27,7 +27,7 @@ public class BulletCollider : BulletBase
             Destroy(this.gameObject);
         }
 
-        // Score加算 ---------------------------------------
+        // 敵の弾と接触、Score加算 ----------------------------------
         // ランダム
         if (collision.CompareTag("RandomBullet"))
         {
@@ -36,14 +36,14 @@ public class BulletCollider : BulletBase
             // スコア加算
             scoreManager.AddScore(RANDOM_BULLET_SCORE);
         }
-        //// Playerに向かっていく
-        //else if (collision.CompareTag("AimedBullet"))
-        //{
-        //    Destroy(this.gameObject);
+        // Playerに向かっていく
+        else if (collision.CompareTag("AimedBullet"))
+        {
+            Destroy(this.gameObject);
 
-        //    // スコア加算
-        //    scoreManager.AddScore(AIMED_BULLET_SCORE);
-        //}
+            // スコア加算
+            scoreManager.AddScore(AIMED_BULLET_SCORE);
+        }
         //// 追跡
         //else if (collision.CompareTag("ChaseBullet"))
         //{
