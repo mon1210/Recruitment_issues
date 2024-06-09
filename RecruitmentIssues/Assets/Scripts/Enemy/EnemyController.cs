@@ -18,9 +18,9 @@ public class EnemyController : CharacterBase
 
     // 移動判定までのタイム
     const float REVERSE_MOVE_TIME = 3.0f;
-    // 発射間隔定数
-    const float FIRE_INTERVAL = 0.25f;
-    // 
+    // ランダムな弾の発射間隔定数
+    const float RANDOM_FIRE_INTERVAL = 0.25f;
+    // Playerに向かう弾の発射間隔定数
     const float AIMED_FIRE_INTERVAL = 2.0f;
     // 弾発射位置調整用定数
     const float BULLET_OFFSET_X = 1.0f;
@@ -36,7 +36,7 @@ public class EnemyController : CharacterBase
 
         // ランダムな弾の生成を開始
         StartCoroutine(SpawnRandomBullet());
-        // 
+        // Playerに向かう弾の生成を開始
         StartCoroutine(SpawnAimedBullet());
     }
 
@@ -125,7 +125,7 @@ public class EnemyController : CharacterBase
             enemyBulletManager.AddBulletList("Random", RandomBullet);
 
             // インターバルを待つ
-            yield return new WaitForSeconds(FIRE_INTERVAL);
+            yield return new WaitForSeconds(AIMED_FIRE_INTERVAL);
         }
     }
 
