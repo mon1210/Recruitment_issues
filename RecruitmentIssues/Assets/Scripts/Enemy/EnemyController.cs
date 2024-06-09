@@ -3,25 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class EnemyController : MonoBehaviour
+public class EnemyController : CharacterBase
 {
     private EnemyCollider enemyCollider;
     private EnemyBulletManager enemyBulletManager;
     private SpriteRenderer spriteRenderer;
 
-    // 移動速度
-    [SerializeField] private float moveSpeed = 0.0f;
     [SerializeField] private GameObject randomBulletPrefab;
     [SerializeField] private GameObject aimedBulletPrefab;
     // 残り体力
     [SerializeField] private int hitPoint = 100;
-    // 点滅周期
-    [SerializeField] private float blinkInterval = 0.0f;
 
     private float moveTimer = 0.0f;
-    private float blinkTimer = 0.0f;
-    private float timer = 0.0f;
-    private bool isBlink = false;
 
     // 移動判定までのタイム
     const float REVERSE_MOVE_TIME = 3.0f;
@@ -31,12 +24,12 @@ public class EnemyController : MonoBehaviour
     const float AIMED_FIRE_INTERVAL = 2.0f;
     // 弾発射位置調整用定数
     const float BULLET_OFFSET_X = 1.0f;
-    // 点滅時間
-    const float BLINK_TIME = 1.0f;
 
-    // Start is called before the first frame update
-    void Start()
+    override protected void Start()
     {
+        // 基底クラスのStart呼び出し
+        base.Start();
+
         enemyCollider = GetComponent<EnemyCollider>();
         enemyBulletManager = GetComponent<EnemyBulletManager>();
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -47,18 +40,20 @@ public class EnemyController : MonoBehaviour
         StartCoroutine(SpawnAimedBullet());
     }
 
-    // Update is called once per frame
-    void Update()
+    override protected void Update()
     {
+        // 基底クラスのUpdate呼び出し
+        base.Update();
+
         // 被ダメージ
-        if(enemyCollider.IsDamage)
+        if (enemyCollider.IsDamage)
         {
             hitPoint--;
-            isBlink = true;
             enemyCollider.IsDamage = false;
+            isBlink = true;
         }
 
-        if(hitPoint > 0)
+        if (hitPoint > 0)
         {
             // 移動可能時のみ移動
             if (enemyCollider.IsMoveAble)
@@ -72,7 +67,6 @@ public class EnemyController : MonoBehaviour
             SceneManager.LoadScene("GameOverScene");
         }
 
-        manageBlinking();
     }
 
     // 移動関数
@@ -92,7 +86,7 @@ public class EnemyController : MonoBehaviour
     }
 
     // 点滅処理
-    private void blinking()
+    override protected void blinking()
     {
         // 内部時刻を経過させる
         timer += Time.deltaTime;
@@ -100,7 +94,7 @@ public class EnemyController : MonoBehaviour
         // timer～blinkIntervalの間で繰り返し値を取得
         float repeatValue = Mathf.Repeat((float)timer, blinkInterval);
 
-        // インターバルの半分以上の時は表示
+        // インターバルの半分以上の時は赤色
         if (repeatValue >= blinkInterval * 0.5f)
         {
             spriteRenderer.color = Color.white;
@@ -108,25 +102,6 @@ public class EnemyController : MonoBehaviour
         else
         {
             spriteRenderer.color = Color.red;
-        }
-    }
-
-    // 点滅が指定した秒間続くようにする
-    private void manageBlinking()
-    {
-        if (isBlink)
-        {
-            blinkTimer -= Time.deltaTime;
-            if (blinkTimer > 0)
-            {
-                blinking();
-            }
-            else
-            {
-                // リセット
-                blinkTimer = BLINK_TIME;
-                isBlink = false;
-            }
         }
     }
 
