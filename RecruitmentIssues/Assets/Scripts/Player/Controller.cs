@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Controller : MonoBehaviour
+public class Controller : CharacterBase
 {
     // 弾Prefab取得
     [SerializeField] private GameObject bulletPrefab;
@@ -11,20 +11,15 @@ public class Controller : MonoBehaviour
     [SerializeField] private GameObject explosionPrefab;
     // 残機表示用UIオブジェクト取得
     [SerializeField] private LifeStarSpawner lifeStarsSpawner;
-    // 移動スピード
-    [SerializeField] private int moveSpeed = 0;
-    // 点滅周期
-    [SerializeField] private float blinkInterval = 0.0f;
 
     // キー入力を受け取って保存する用
     private Vector2 input = Vector2.zero;
 
     private Collider colliderScript;
     private SpriteRenderer spriteRenderer;
+
     // 減速フラグ
     private bool isLow = false;
-    // 点滅フラグ
-    private bool isBlink = false;
     // 爆弾生成フラグ
     private bool isBombInstantiate = false;
     // 残り機数
@@ -34,16 +29,12 @@ public class Controller : MonoBehaviour
     // 現在の爆弾数
     private int currentBomb = 3;
 
-    private float timer = 0.0f;
-    private float blinkTimer = 0.0f;
     private float reloadTimer = 0.0f;
 
     // 弾発射位置調整用定数
     const float BULLET_OFFSET_Y = 1.0f;
     // 移動速度原則倍率定数
     const float SLOWDOWN_FACTOR = 0.5f;
-    // 点滅時間
-    const float BLINK_TIME = 1.0f;
     // 装填時間
     const float RELOAD_TIME = 1.5f;
     // 最大弾数
@@ -56,20 +47,25 @@ public class Controller : MonoBehaviour
     public bool IsBombInstantiate { get => isBombInstantiate; set => isBombInstantiate = value; }
     public int CurrentBomb { get => currentBomb;}
 
-    void Start()
+    override protected void Start()
     {
+        // 基底クラスのStart呼び出し
+        base.Start();
+
         colliderScript = GetComponent<Collider>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        blinkTimer = BLINK_TIME;
         reloadTimer = RELOAD_TIME; 
         currentBullet = MAX_BULLET;
         currentBomb = MAX_BOMB;
     }
 
-    void Update()
+    override protected void Update()
     {
+        // 基底クラスのUpdate呼び出し
+        base.Update();
+
         // 被ダメージ
-        if(colliderScript.IsDamage)
+        if (colliderScript.IsDamage)
         {
             life--;
             colliderScript.IsDamage = false;
@@ -84,9 +80,6 @@ public class Controller : MonoBehaviour
         {
             reload();
         }
-
-        // 点滅処理管理
-        manageBlinking();
 
         // 残機確認
         checkLife();
@@ -158,7 +151,7 @@ public class Controller : MonoBehaviour
     }
 
     // 点滅処理
-    private void blinking()
+    override protected void blinking()
     {
         // 内部時刻を経過させる
         timer += Time.deltaTime;
@@ -174,25 +167,6 @@ public class Controller : MonoBehaviour
         else
         {
             spriteRenderer.enabled = false;
-        }
-    }
-
-    // 点滅が指定した秒間続くようにする
-    private void manageBlinking()
-    {
-        if (isBlink)
-        {
-            blinkTimer -= Time.deltaTime;
-            if (blinkTimer > 0)
-            {
-                blinking();
-            }
-            else
-            {
-                // リセット
-                blinkTimer = BLINK_TIME;
-                isBlink = false;
-            }
         }
     }
 
