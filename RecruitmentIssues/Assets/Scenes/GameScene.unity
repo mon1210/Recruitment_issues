@@ -1843,7 +1843,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4960403181900287776, guid: 38f932043d0caca45bb91a545d7c7bee, type: 3}
       propertyPath: blinkInterval
-      value: 0.2
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 8077017612511065247, guid: 38f932043d0caca45bb91a545d7c7bee, type: 3}
       propertyPath: m_LocalScale.x
