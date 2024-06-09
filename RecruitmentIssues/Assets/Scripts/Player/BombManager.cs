@@ -24,8 +24,10 @@ public class BombManager : MonoBehaviour
     const float EXPLOSION_START = 1.5f;
     // ”š”­I—¹ŽžŠÔ
     const float EXPLOSION_END = 2.0f;
-    // ƒ‰ƒ“ƒ_ƒ€¶¬‚Ì’e‚ð”š’e‚Å‰ó‚µ‚½‚Æ‚«‚ÌƒXƒRƒA
+    // ƒ‰ƒ“ƒ_ƒ€¶¬‚Ì’e‚ð”š’e‚Å‰ó‚µ‚½‚Æ‚«‚Ì‰ÁŽZƒXƒRƒA
     const int RANDOM_BULLET_BREAK_SCORE = 10;
+    // Player‚ÉŒü‚©‚Á‚Ä”ò‚Ô’e‚ð”š’e‚Å‰ó‚µ‚½‚Æ‚«‚Ì‰ÁŽZƒXƒRƒA
+    const int AIMED_BULLET_BREAK_SCORE = 30;
 
     void Start()
     {
@@ -58,6 +60,9 @@ public class BombManager : MonoBehaviour
             {
                 int DestroyedCount = enemyBulletManager.DestroyAllBullets("Random");
                 scoreManager.AddScore(DestroyedCount * RANDOM_BULLET_BREAK_SCORE);
+
+                DestroyedCount = enemyBulletManager.DestroyAllBullets("Aimed");
+                scoreManager.AddScore(DestroyedCount * AIMED_BULLET_BREAK_SCORE);
             }
             // ƒŠƒZƒbƒg
             if(timer >= EXPLOSION_END)
