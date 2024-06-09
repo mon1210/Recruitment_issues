@@ -10,6 +10,7 @@ public class EnemyController : MonoBehaviour
     // 移動速度
     [SerializeField] private float moveSpeed = 0.0f;
     [SerializeField] private GameObject randomBulletPrefab;
+    [SerializeField] private GameObject aimedBulletPrefab;
     // 残り体力
     [SerializeField] private int hitPoint = 100;
 
@@ -19,6 +20,8 @@ public class EnemyController : MonoBehaviour
     const float REVERSE_MOVE_TIME = 3.0f;
     // 発射間隔定数
     const float FIRE_INTERVAL = 0.25f;
+    // 
+    const float AIMED_FIRE_INTERVAL = 2.0f;
     // 弾発射位置調整用定数
     const float BULLET_OFFSET_X = 1.0f;
 
@@ -30,6 +33,8 @@ public class EnemyController : MonoBehaviour
 
         // ランダムな弾の生成を開始
         StartCoroutine(SpawnRandomBullet());
+        // 
+        StartCoroutine(SpawnAimedBullet());
     }
 
     // Update is called once per frame
@@ -89,6 +94,24 @@ public class EnemyController : MonoBehaviour
 
             // インターバルを待つ
             yield return new WaitForSeconds(FIRE_INTERVAL);
+        }
+    }
+
+    // Playerに向かって飛ぶ弾を生成する
+    private IEnumerator SpawnAimedBullet()
+    {
+        while (true)
+        {
+            Vector3 Pos = new Vector3(transform.position.x - BULLET_OFFSET_X, transform.position.y, transform.position.z);
+
+            // 生成
+            GameObject AimedBullet = Instantiate(aimedBulletPrefab, Pos, Quaternion.identity);
+
+            // リストに追加
+            enemyBulletManager.AddBulletList("Aimed", AimedBullet);
+
+            // インターバルを待つ
+            yield return new WaitForSeconds(AIMED_FIRE_INTERVAL);
         }
     }
 }
