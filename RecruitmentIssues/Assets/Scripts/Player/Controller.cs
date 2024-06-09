@@ -28,14 +28,14 @@ public class Controller : CharacterBase
     private int currentBullet = 5;
     // 現在の爆弾数
     private int currentBomb = 3;
-
+    // リロードタイマー
     private float reloadTimer = 0.0f;
 
     // 弾発射位置調整用定数
     const float BULLET_OFFSET_Y = 1.0f;
     // 移動速度原則倍率定数
     const float SLOWDOWN_FACTOR = 0.5f;
-    // 装填時間
+    // リロード時間
     const float RELOAD_TIME = 1.5f;
     // 最大弾数
     const int MAX_BULLET = 5;
