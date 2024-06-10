@@ -125,7 +125,7 @@ public class EnemyController : CharacterBase
             enemyBulletManager.AddBulletList("Random", RandomBullet);
 
             // インターバルを待つ
-            yield return new WaitForSeconds(AIMED_FIRE_INTERVAL);
+            yield return new WaitForSeconds(RANDOM_FIRE_INTERVAL);
         }
     }
 
