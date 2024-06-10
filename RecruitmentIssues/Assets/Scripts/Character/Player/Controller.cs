@@ -11,6 +11,8 @@ public class Controller : CharacterBase
     [SerializeField] private GameObject explosionPrefab;
     // 残機表示用UIオブジェクト取得
     [SerializeField] private LifeStarSpawner lifeStarsSpawner;
+    // リロードテキスト取得
+    [SerializeField] private GameObject reloadText;
 
     // キー入力を受け取って保存する用
     private Vector2 input = Vector2.zero;
@@ -135,6 +137,9 @@ public class Controller : CharacterBase
         }
         else
         {
+            // リロードテキスト非表示
+            reloadText.SetActive(false);
+
             // 自身を非表示
             this.gameObject.SetActive(false);
 
@@ -173,10 +178,12 @@ public class Controller : CharacterBase
     // リロード関数
     private void reload()
     {
+        reloadText.SetActive(true);
         reloadTimer -= Time.deltaTime;
         if(reloadTimer <= 0)
         {
             // リセット
+            reloadText.SetActive(false);
             currentBullet = MAX_BULLET;
             reloadTimer = RELOAD_TIME;
         }
