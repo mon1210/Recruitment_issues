@@ -9,7 +9,7 @@ public class EnemyBulletManager : MonoBehaviour
     // PlayerÇ…å¸Ç©Ç¡ÇƒîÚÇ‘íe
     private List<GameObject> aimedBullets = new List<GameObject>();
     // í«ê’íe
-    //private List<GameObject> chaseBullets = new List<GameObject>();
+    private List<GameObject> chaseBullets = new List<GameObject>();
 
     // ÉäÉXÉgÇ…í«â¡     à¯êîÇ≈éÌóﬁÇîªíf
     public void AddBulletList(string bullet_kind, GameObject bullet_)
@@ -22,9 +22,9 @@ public class EnemyBulletManager : MonoBehaviour
             case "Aimed":
                 aimedBullets.Add(bullet_);
                 break;
-            //case "Chase":
-            //    chaseBullets.Add(bullet_);
-            //    break;
+            case "Chase":
+                chaseBullets.Add(bullet_);
+                break;
             default:
                 break;
         }
@@ -54,14 +54,14 @@ public class EnemyBulletManager : MonoBehaviour
                 aimedBullets.Clear();
                 return DestroyedCount;
 
-            //case "Chase":
-            //    DestroyedCount = chaseBullets.Count;
-            //    foreach (GameObject bullet in chaseBullets)
-            //    {
-            //        Destroy(bullet);
-            //    }
-            //    chaseBullets.Clear();
-            //    return DestroyedCount;
+            case "Chase":
+                DestroyedCount = chaseBullets.Count;
+                foreach (GameObject bullet in chaseBullets)
+                {
+                    Destroy(bullet);
+                }
+                chaseBullets.Clear();
+                return DestroyedCount;
 
             default:
                 return 0;
