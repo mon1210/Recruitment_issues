@@ -24,7 +24,7 @@ public class EnemyController : CharacterBase
     // Playerに向かう弾の発射間隔定数
     const float AIMED_FIRE_INTERVAL = 2.0f;
     // ホーミング弾の発射間隔定数
-    const float CHASE_FIRE_INTERVAL = 2.0f;
+    const float CHASE_FIRE_INTERVAL = 5.0f;
     // 弾発射位置調整用定数
     const float BULLET_OFFSET_X = 1.0f;
 
