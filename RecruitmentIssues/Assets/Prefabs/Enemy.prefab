@@ -105,7 +105,7 @@ MonoBehaviour:
   blinkInterval: 0
   randomBulletPrefab: {fileID: 3007136608484790778, guid: 2b8203a596cdd864290c5a9d5c44c535, type: 3}
   aimedBulletPrefab: {fileID: 4033042199850638225, guid: 4d0fec73b1305e745b02e9493f3a8a3c, type: 3}
-  chaseBulletPrefab: {fileID: 6126140949995835805, guid: 921be9bb818c87a42bad691f39d6d3d2, type: 3}
+  chaseBulletPrefab: {fileID: 2174283334590327685, guid: 921be9bb818c87a42bad691f39d6d3d2, type: 3}
   hitPoint: 100
 --- !u!114 &683922476630489083
 MonoBehaviour:
