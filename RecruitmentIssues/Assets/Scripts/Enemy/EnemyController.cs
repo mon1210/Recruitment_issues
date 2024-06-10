@@ -11,6 +11,7 @@ public class EnemyController : CharacterBase
 
     [SerializeField] private GameObject randomBulletPrefab;
     [SerializeField] private GameObject aimedBulletPrefab;
+    [SerializeField] private GameObject chaseBulletPrefab;
     // 残り体力
     [SerializeField] private int hitPoint = 100;
 
@@ -22,6 +23,8 @@ public class EnemyController : CharacterBase
     const float RANDOM_FIRE_INTERVAL = 0.25f;
     // Playerに向かう弾の発射間隔定数
     const float AIMED_FIRE_INTERVAL = 2.0f;
+    // ホーミング弾の発射間隔定数
+    const float CHASE_FIRE_INTERVAL = 5.0f;
     // 弾発射位置調整用定数
     const float BULLET_OFFSET_X = 1.0f;
 
@@ -38,6 +41,8 @@ public class EnemyController : CharacterBase
         StartCoroutine(SpawnRandomBullet());
         // Playerに向かう弾の生成を開始
         StartCoroutine(SpawnAimedBullet());
+        // 
+        StartCoroutine(SpawnChaseBullet());
     }
 
     override protected void Update()
@@ -144,6 +149,24 @@ public class EnemyController : CharacterBase
 
             // インターバルを待つ
             yield return new WaitForSeconds(AIMED_FIRE_INTERVAL);
+        }
+    }
+
+    // ホーミング弾を生成する
+    private IEnumerator SpawnChaseBullet()
+    {
+        while (true)
+        {
+            Vector3 Pos = new Vector3(transform.position.x - BULLET_OFFSET_X, transform.position.y, transform.position.z);
+
+            // 生成
+            GameObject ChaseBullet = Instantiate(chaseBulletPrefab, Pos, Quaternion.identity);
+
+            // リストに追加
+            enemyBulletManager.AddBulletList("Chase", ChaseBullet);
+
+            // インターバルを待つ
+            yield return new WaitForSeconds(CHASE_FIRE_INTERVAL);
         }
     }
 }
