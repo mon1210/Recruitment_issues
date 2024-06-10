@@ -11,7 +11,7 @@ public class BulletCollider : BulletBase
     // Playerに向かって飛ぶ弾の点数
     const int AIMED_BULLET_SCORE = 5; 
     // 追跡する弾の点数
-    //const int CHASE_BULLET_SCORE = 3;
+    const int CHASE_BULLET_SCORE = 10;
 
     void Start()
     {
@@ -44,12 +44,12 @@ public class BulletCollider : BulletBase
             // スコア加算
             scoreManager.AddScore(AIMED_BULLET_SCORE);
         }
-        //// 追跡
-        //else if (collision.CompareTag("ChaseBullet"))
-        //{
-        //    Destroy(this.gameObject);
+        // 追跡
+        else if (collision.CompareTag("ChaseBullet"))
+        {
+            Destroy(this.gameObject);
 
-        //    scoreManager.AddScore(CHASE_BULLET_SCORE);
-        //}
+            scoreManager.AddScore(CHASE_BULLET_SCORE);
+        }
     }
 }
