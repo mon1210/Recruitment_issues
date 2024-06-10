@@ -28,6 +28,8 @@ public class BombManager : MonoBehaviour
     const int RANDOM_BULLET_BREAK_SCORE = 10;
     // Player‚ÉŒü‚©‚Á‚Ä”ò‚Ô’e‚ð”š’e‚Å‰ó‚µ‚½‚Æ‚«‚Ì‰ÁŽZƒXƒRƒA
     const int AIMED_BULLET_BREAK_SCORE = 30;
+    // ƒz[ƒ~ƒ“ƒO’e‚ð”š’e‚Å‰ó‚µ‚½‚Æ‚«‚Ì‰ÁŽZƒXƒRƒA
+    const int CHASE_BULLET_BREAK_SCORE = 50;
 
     void Start()
     {
@@ -58,11 +60,15 @@ public class BombManager : MonoBehaviour
             // 0.5•bŠÔA“G‚Ì’eíœ
             if(timer >= EXPLOSION_START)
             {
+                // Á‚µ‚½’e‚É‰ž‚¶‚ÄƒXƒRƒA‰ÁŽZ
                 int DestroyedCount = enemyBulletManager.DestroyAllBullets("Random");
                 scoreManager.AddScore(DestroyedCount * RANDOM_BULLET_BREAK_SCORE);
 
                 DestroyedCount = enemyBulletManager.DestroyAllBullets("Aimed");
                 scoreManager.AddScore(DestroyedCount * AIMED_BULLET_BREAK_SCORE);
+
+                DestroyedCount = enemyBulletManager.DestroyAllBullets("Chase");
+                scoreManager.AddScore(DestroyedCount * CHASE_BULLET_BREAK_SCORE);
             }
             // ƒŠƒZƒbƒg
             if(timer >= EXPLOSION_END)
