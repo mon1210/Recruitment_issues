@@ -38,7 +38,7 @@ public class Controller : CharacterBase
     // ƒŠƒ[ƒhŠÔ
     const float RELOAD_TIME = 1.5f;
     // Å‘å’e”
-    const int MAX_BULLET = 5;
+    const int MAX_BULLET = 10;
     // Å‘å”š’e”
     const int MAX_BOMB = 3;
 
