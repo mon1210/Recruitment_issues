@@ -87,10 +87,16 @@ public class EnemyController : CharacterBase
     // エフェクト生成
     private void explosionEffect()
     {
+        Vector3 defaultSize = explosionPrefab.transform.localScale;
+
         // サイズ変更
         explosionPrefab.transform.localScale = new Vector3(7.0f, 7.0f, 7.0f);
 
+        // 生成
         Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+
+        // ドラゴンでも使いまわすので元に戻す
+        explosionPrefab.transform.localScale = defaultSize;
     }
 
     // 移動関数
