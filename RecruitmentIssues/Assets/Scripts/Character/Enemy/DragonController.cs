@@ -7,6 +7,8 @@ public class DragonController : CharacterBase
     private DragonCollider dragonCollider;
     private SpriteRenderer spriteRenderer;
 
+    // 爆発エフェクトPrefab取得
+    [SerializeField] private GameObject explosionPrefab;
     // 残り体力
     [SerializeField] private int hitPoint = 30;
 
@@ -40,15 +42,21 @@ public class DragonController : CharacterBase
         }
 
         // 体力ゼロ
-        if (hitPoint < 0)
+        if (hitPoint <= 0)
         {
             // 自身を非表示
             this.gameObject.SetActive(false);
 
             // 爆発エフェクト表示
+            explosionEffect();
 
-                
         }
+    }
+
+    // エフェクト生成
+    private void explosionEffect()
+    {
+        Instantiate(explosionPrefab, transform.position, Quaternion.identity);
     }
 
     // 点滅処理
