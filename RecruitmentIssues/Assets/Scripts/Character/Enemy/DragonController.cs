@@ -42,7 +42,12 @@ public class DragonController : CharacterBase
         // 体力ゼロ
         if (hitPoint < 0)
         {
-            // 
+            // 自身を非表示
+            this.gameObject.SetActive(false);
+
+            // 爆発エフェクト表示
+
+                
         }
     }
 
