@@ -14,10 +14,14 @@ public class EnemyController : CharacterBase
     [SerializeField] private GameObject chaseBulletPrefab;
     // 爆発エフェクトPrefab取得
     [SerializeField] private GameObject explosionPrefab;
+
+    [SerializeField] private GameManager gameManager;
     // 残り体力
     [SerializeField] private int hitPoint = 100;
 
     private float moveTimer = 0.0f;
+    private bool isStartAimedBullet = false;
+    private bool isStartChaseBullet = false;
 
     // 移動判定までのタイム
     const float REVERSE_MOVE_TIME = 3.0f;
@@ -41,10 +45,6 @@ public class EnemyController : CharacterBase
 
         // ランダムな弾の生成を開始
         StartCoroutine(SpawnRandomBullet());
-        // Playerに向かう弾の生成を開始
-        StartCoroutine(SpawnAimedBullet());
-        // 
-        StartCoroutine(SpawnChaseBullet());
     }
 
     override protected void Update()
@@ -81,6 +81,21 @@ public class EnemyController : CharacterBase
 
             // 爆発エフェクト表示
             explosionEffect();
+        }
+
+        // Playerに向かって飛ぶ弾の生成開始
+        if (gameManager.IsAimedStart && !isStartAimedBullet)
+        {
+            StartCoroutine(SpawnAimedBullet());
+            gameManager.IsAimedStart = false;
+            isStartAimedBullet = true;
+        }
+        // ホーミング弾の生成開始
+        if (gameManager.IsChaseStart && !isStartChaseBullet)
+        {
+            StartCoroutine(SpawnChaseBullet());
+            gameManager.IsChaseStart = false;
+            isStartChaseBullet = true;
         }
     }
 

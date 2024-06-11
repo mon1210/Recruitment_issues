@@ -980,6 +980,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3879625421644811657, guid: d0ded42676d9fd04fab1238a4ed5c749, type: 3}
   m_PrefabInstance: {fileID: 2323357392908593042}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &921378961 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6505993698134445867, guid: 2b48a9e1206862e4782b27e8151a5dbe, type: 3}
+  m_PrefabInstance: {fileID: 492448657}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &981358564
 GameObject:
   m_ObjectHideFlags: 0
@@ -1317,6 +1322,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 896175738}
   enemy: {fileID: 1352967426}
+  dragon: {fileID: 1821441418}
+  dragonBottom: {fileID: 921378961}
 --- !u!1 &1352967426 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1976069089976511967, guid: 38f932043d0caca45bb91a545d7c7bee, type: 3}
@@ -1831,6 +1838,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1821441418 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6505993698134445867, guid: 2b48a9e1206862e4782b27e8151a5dbe, type: 3}
+  m_PrefabInstance: {fileID: 1112213455138802657}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1848674406
 GameObject:
   m_ObjectHideFlags: 0
@@ -2077,6 +2089,10 @@ PrefabInstance:
       propertyPath: moveSpeed
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 4960403181900287776, guid: 38f932043d0caca45bb91a545d7c7bee, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1319965578}
     - target: {fileID: 4960403181900287776, guid: 38f932043d0caca45bb91a545d7c7bee, type: 3}
       propertyPath: blinkInterval
       value: 0.15
