@@ -13,12 +13,15 @@ public class GameManager : MonoBehaviour
     private EnemyController enemyControllerScript;
     private EnemyBulletManager enemyBulletManager;
 
-    private int deathCounter = 0;
+    private bool isAimedStart = false;
+    private bool isChaseStart = false;
+
     private float endTimer = 0.0f;
 
     const float END_TIME = 5.0f;
 
-    public int DeathCounter { get => deathCounter; }
+    public bool IsAimedStart { get => isAimedStart; set => isAimedStart = value; }
+    public bool IsChaseStart { get => isChaseStart; set => isChaseStart = value; }
 
     void Start()
     {
@@ -47,11 +50,18 @@ public class GameManager : MonoBehaviour
             GameEnd();
         }
 
-        // ドラゴン破壊時カウントを増やす　状態変化用
-        if(dragon.activeInHierarchy || dragonBottom.activeInHierarchy)
+
+        // ドラゴン二体死亡、ホーミング弾開始
+        if (!dragon.activeInHierarchy && !dragonBottom.activeInHierarchy)
         {
-            deathCounter++;
+            isChaseStart = true;
         }
+        // ドラゴン一体死亡、Playerに向かう弾開始（else if にすることで二体目死亡後にもう一度通ることを回避）
+        else if (!dragon.activeInHierarchy || !dragonBottom.activeInHierarchy)
+        {
+            isAimedStart = true;
+        }
+
     }
 
     private void GameEnd()
