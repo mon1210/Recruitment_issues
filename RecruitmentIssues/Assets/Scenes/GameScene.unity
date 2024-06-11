@@ -470,6 +470,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyDragonBottom
       objectReference: {fileID: 0}
+    - target: {fileID: 6505993698134445867, guid: 2b48a9e1206862e4782b27e8151a5dbe, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2043,6 +2047,10 @@ PrefabInstance:
     - target: {fileID: 6505993698134445867, guid: 2b48a9e1206862e4782b27e8151a5dbe, type: 3}
       propertyPath: m_Name
       value: EnemyDragon
+      objectReference: {fileID: 0}
+    - target: {fileID: 6505993698134445867, guid: 2b48a9e1206862e4782b27e8151a5dbe, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
