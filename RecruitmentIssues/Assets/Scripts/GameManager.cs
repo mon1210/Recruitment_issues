@@ -8,12 +8,17 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject enemy;
+    [SerializeField] private GameObject dragon;
+    [SerializeField] private GameObject dragonBottom;
     private EnemyController enemyControllerScript;
     private EnemyBulletManager enemyBulletManager;
 
+    private int deathCounter = 0;
     private float endTimer = 0.0f;
 
     const float END_TIME = 5.0f;
+
+    public int DeathCounter { get => deathCounter; }
 
     void Start()
     {
@@ -40,6 +45,12 @@ public class GameManager : MonoBehaviour
         {
             // ゲーム終了
             GameEnd();
+        }
+
+        // ドラゴン破壊時カウントを増やす　状態変化用
+        if(dragon.activeInHierarchy || dragonBottom.activeInHierarchy)
+        {
+            deathCounter++;
         }
     }
 
