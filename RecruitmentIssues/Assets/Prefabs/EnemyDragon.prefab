@@ -124,6 +124,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 0
   blinkInterval: 0.2
+  explosionPrefab: {fileID: 9145669883576353645, guid: 1ae9ee9b57b982a4a9b7d69bd329f104, type: 3}
   hitPoint: 30
 --- !u!114 &5460074913518022567
 MonoBehaviour:
