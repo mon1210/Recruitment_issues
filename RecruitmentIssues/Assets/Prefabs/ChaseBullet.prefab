@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5135664743789199926}
   m_Layer: 0
   m_Name: ChaseBullet
-  m_TagString: Untagged
+  m_TagString: ChaseBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
