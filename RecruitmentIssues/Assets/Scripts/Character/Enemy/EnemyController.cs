@@ -12,6 +12,8 @@ public class EnemyController : CharacterBase
     [SerializeField] private GameObject randomBulletPrefab;
     [SerializeField] private GameObject aimedBulletPrefab;
     [SerializeField] private GameObject chaseBulletPrefab;
+    // 爆発エフェクトPrefab取得
+    [SerializeField] private GameObject explosionPrefab;
     // 残り体力
     [SerializeField] private int hitPoint = 100;
 
@@ -74,10 +76,21 @@ public class EnemyController : CharacterBase
         }
         else
         {
-            // 機数0でGameOver     Todo 撃破アニメーション終了Eventでシーン遷移
-            SceneManager.LoadScene("GameOverScene");
-        }
+            // 自身を非表示
+            this.gameObject.SetActive(false);
 
+            // 爆発エフェクト表示
+            explosionEffect();
+        }
+    }
+
+    // エフェクト生成
+    private void explosionEffect()
+    {
+        // サイズ変更
+        explosionPrefab.transform.localScale = new Vector3(7.0f, 7.0f, 7.0f);
+
+        Instantiate(explosionPrefab, transform.position, Quaternion.identity);
     }
 
     // 移動関数
