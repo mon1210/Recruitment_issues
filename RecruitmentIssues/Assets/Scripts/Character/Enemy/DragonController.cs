@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class DragonController : CharacterBase
 {
-    private DragonCollider dragonCollider;
-    private SpriteRenderer spriteRenderer;
-
     // 爆発エフェクトPrefab取得
     [SerializeField] private GameObject explosionPrefab;
     // 残り体力
     [SerializeField] private int hitPoint = 30;
+
+    private SpriteRenderer spriteRenderer;
+    private DragonCollider dragonCollider;
 
     override protected void Start()
     {
