@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3318978033856815961}
   - component: {fileID: 4901284346281245219}
-  - component: {fileID: 7418964891669560081}
+  - component: {fileID: 1480194877187976225}
   - component: {fileID: 5087845732721434077}
   m_Layer: 0
   m_Name: EnemyExplosion
@@ -86,7 +86,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7418964891669560081
+--- !u!114 &1480194877187976225
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -95,10 +95,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 9145669883576353645}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55eb7db1fa0cf0e45b93f865dd869611, type: 3}
+  m_Script: {fileID: 11500000, guid: 1735bf4ce7e745a4bafdcb2650973863, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationTime: 1
+  lifeTime: 1
 --- !u!95 &5087845732721434077
 Animator:
   serializedVersion: 5
