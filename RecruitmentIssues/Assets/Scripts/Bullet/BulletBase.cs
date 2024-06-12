@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class BulletBase : MonoBehaviour
 {
-    private float timer = 0.0f;
-
     // ‘¶İŠÔ     ‚±‚ê‚ğ’´‚¦‚é‚Ædelete
     [SerializeField] private float lifeTime = 0.0f;
+
+    private float timer = 0.0f;
 
     void Update()
     {
