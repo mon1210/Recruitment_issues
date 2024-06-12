@@ -5,24 +5,32 @@ using UnityEngine;
 public class EnemyBulletManager : MonoBehaviour
 {
     // ƒ‰ƒ“ƒ_ƒ€‚É‚Î‚ç‚Ü‚©‚ê‚é’e
-    private List<GameObject> randamBullets = new List<GameObject>();
+    private List<GameObject> randomBullets = new List<GameObject>();
     // Player‚ÉŒü‚©‚Á‚Ä”ò‚Ô’e
     private List<GameObject> aimedBullets = new List<GameObject>();
     // ƒz[ƒ~ƒ“ƒO’e
     private List<GameObject> chaseBullets = new List<GameObject>();
 
+    public enum BulletKind
+    { 
+        Default = -1,
+        Random,
+        Aimed,
+        Chase
+    }
+
     // ƒŠƒXƒg‚É’Ç‰Á     ˆø”‚Åí—Ş‚ğ”»’f
-    public void AddBulletList(string bullet_kind, GameObject bullet_)
+    public void AddBulletList(BulletKind bullet_kind, GameObject bullet_)
     {
         switch (bullet_kind)
         {
-            case "Random":
-                randamBullets.Add(bullet_);
+            case BulletKind.Random:
+                randomBullets.Add(bullet_);
                 break;
-            case "Aimed":
+            case BulletKind.Aimed:
                 aimedBullets.Add(bullet_);
                 break;
-            case "Chase":
+            case BulletKind.Chase:
                 chaseBullets.Add(bullet_);
                 break;
             default:
@@ -31,21 +39,21 @@ public class EnemyBulletManager : MonoBehaviour
     }
 
     // ƒŠƒXƒgã‚Ì’eíœ     ˆø”‚Åí—Ş‚ğ”»’f
-    public int DestroyAllBullets(string bullet_kind)
+    public int DestroyAllBullets(BulletKind bullet_kind)
     {
         int DestroyedCount = 0;
         switch (bullet_kind)
         {
-            case "Random":
-                DestroyedCount = randamBullets.Count;
-                foreach (GameObject bullet in randamBullets)
+            case BulletKind.Random:
+                DestroyedCount = randomBullets.Count;
+                foreach (GameObject bullet in randomBullets)
                 {
                     Destroy(bullet);
                 }
-                randamBullets.Clear();
+                randomBullets.Clear();
                 return DestroyedCount;
 
-            case "Aimed":
+            case BulletKind.Aimed:
                 DestroyedCount = aimedBullets.Count;
                 foreach (GameObject bullet in aimedBullets)
                 {
@@ -54,7 +62,7 @@ public class EnemyBulletManager : MonoBehaviour
                 aimedBullets.Clear();
                 return DestroyedCount;
 
-            case "Chase":
+            case BulletKind.Chase:
                 DestroyedCount = chaseBullets.Count;
                 foreach (GameObject bullet in chaseBullets)
                 {

@@ -163,9 +163,9 @@ public class EnemyController : CharacterBase
             
             // 生成
             GameObject RandomBullet = Instantiate(randomBulletPrefab, Pos, Quaternion.identity);
-            
+
             // リストに追加
-            enemyBulletManager.AddBulletList("Random", RandomBullet);
+            enemyBulletManager.AddBulletList(EnemyBulletManager.BulletKind.Random, RandomBullet);
 
             // インターバルを待つ
             yield return new WaitForSeconds(RANDOM_FIRE_INTERVAL);
@@ -183,7 +183,7 @@ public class EnemyController : CharacterBase
             GameObject AimedBullet = Instantiate(aimedBulletPrefab, Pos, Quaternion.identity);
 
             // リストに追加
-            enemyBulletManager.AddBulletList("Aimed", AimedBullet);
+            enemyBulletManager.AddBulletList(EnemyBulletManager.BulletKind.Aimed, AimedBullet);
 
             // インターバルを待つ
             yield return new WaitForSeconds(AIMED_FIRE_INTERVAL);
@@ -201,7 +201,7 @@ public class EnemyController : CharacterBase
             GameObject ChaseBullet = Instantiate(chaseBulletPrefab, Pos, Quaternion.identity);
 
             // リストに追加
-            enemyBulletManager.AddBulletList("Chase", ChaseBullet);
+            enemyBulletManager.AddBulletList(EnemyBulletManager.BulletKind.Chase, ChaseBullet);
 
             // インターバルを待つ
             yield return new WaitForSeconds(CHASE_FIRE_INTERVAL);

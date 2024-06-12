@@ -66,13 +66,13 @@ public class BombManager : MonoBehaviour
             if(timer >= EXPLOSION_START)
             {
                 // 消した弾に応じてスコア加算
-                int DestroyedCount = enemyBulletManager.DestroyAllBullets("Random");
+                int DestroyedCount = enemyBulletManager.DestroyAllBullets(EnemyBulletManager.BulletKind.Random);
                 scoreManager.AddScore(DestroyedCount * RANDOM_BULLET_BREAK_SCORE);
 
-                DestroyedCount = enemyBulletManager.DestroyAllBullets("Aimed");
+                DestroyedCount = enemyBulletManager.DestroyAllBullets(EnemyBulletManager.BulletKind.Aimed);
                 scoreManager.AddScore(DestroyedCount * AIMED_BULLET_BREAK_SCORE);
 
-                DestroyedCount = enemyBulletManager.DestroyAllBullets("Chase");
+                DestroyedCount = enemyBulletManager.DestroyAllBullets(EnemyBulletManager.BulletKind.Chase);
                 scoreManager.AddScore(DestroyedCount * CHASE_BULLET_BREAK_SCORE);
             }
             // リセット

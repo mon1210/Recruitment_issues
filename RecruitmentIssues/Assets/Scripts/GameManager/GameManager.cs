@@ -76,9 +76,9 @@ public class GameManager : MonoBehaviour
     private void GameEnd()
     {
         // “G‚Ì’eíœ
-        enemyBulletManager.DestroyAllBullets("Random");
-        enemyBulletManager.DestroyAllBullets("Aimed");
-        enemyBulletManager.DestroyAllBullets("Chase");
+        enemyBulletManager.DestroyAllBullets(EnemyBulletManager.BulletKind.Random);
+        enemyBulletManager.DestroyAllBullets(EnemyBulletManager.BulletKind.Random);
+        enemyBulletManager.DestroyAllBullets(EnemyBulletManager.BulletKind.Random);
 
         // 5•bŒã‚ÉGameOverScene‚Ö‘JˆÚ
         endTimer += Time.deltaTime;
