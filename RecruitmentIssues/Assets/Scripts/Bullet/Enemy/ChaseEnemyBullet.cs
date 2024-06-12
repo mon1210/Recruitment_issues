@@ -9,8 +9,8 @@ public class ChaseEnemyBullet : MonoBehaviour
 {
     // 移動速度
     [SerializeField] private float moveSpeed = 0.0f;
-    // 追跡する最大時間
-    [SerializeField] private float chaseLimitTime = 0.0f;
+    // 追跡する最大時間     最小0.1fにしないとエラーを吐く
+    [SerializeField, Min(0.1f)] private float chaseLimitTime = 0.1f;
 
     private GameObject player;
     // 隣辺
@@ -26,12 +26,6 @@ public class ChaseEnemyBullet : MonoBehaviour
     {
         // 自身がPrefabなのでFindを使用
         player = GameObject.Find("Player");
-
-        // ほとんどないが、chaseLimitTimeが0以下のときエラーを吐くので計算しておく
-        if(chaseLimitTime <= 0.0f)
-        {
-            calculateTriangleSides();
-        }
     }
 
     void Update()
