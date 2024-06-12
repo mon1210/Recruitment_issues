@@ -8,7 +8,7 @@ public class EnemyBulletManager : MonoBehaviour
     private List<GameObject> randamBullets = new List<GameObject>();
     // Playerに向かって飛ぶ弾
     private List<GameObject> aimedBullets = new List<GameObject>();
-    // 追跡弾
+    // ホーミング弾
     private List<GameObject> chaseBullets = new List<GameObject>();
 
     // リストに追加     引数で種類を判断

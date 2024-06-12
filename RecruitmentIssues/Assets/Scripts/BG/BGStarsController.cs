@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class BGStarsController : MonoBehaviour
 {
+    // リセット座標X
     [SerializeField] private float resetPositionX = 0.0f;
+    // 移動速度
     [SerializeField] private float moveSpeed = 2.0f;
+
+    // 開始座標
     private Vector3 startPosition = Vector3.zero;
 
     void Start()

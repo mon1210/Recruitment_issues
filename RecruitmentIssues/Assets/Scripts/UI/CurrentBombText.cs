@@ -5,8 +5,11 @@ using UnityEngine.UI;
 
 public class CurrentBombText : MonoBehaviour
 {
+    // ボムの残弾数テキスト取得
     [SerializeField] private Text currentBombText;
+    // Player取得
     [SerializeField] private GameObject player;
+
     private Controller controllerScript;
 
     void Start()

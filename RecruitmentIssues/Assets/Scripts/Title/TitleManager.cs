@@ -7,7 +7,9 @@ using UnityEngine.SceneManagement;
 
 public class TitleManager : MonoBehaviour
 {
+    // ガイドテキスト取得
     [SerializeField] private Text text;
+
     // フェード速度   (大きいほど遅い)
     const float FADE_DURATION = 1.0f;
 

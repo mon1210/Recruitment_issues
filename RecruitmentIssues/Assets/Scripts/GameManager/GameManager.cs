@@ -6,18 +6,27 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    // Player取得
     [SerializeField] private GameObject player;
+    // Enemy取得
     [SerializeField] private GameObject enemy;
+    // ドラゴン頭(上)取得
     [SerializeField] private GameObject dragon;
+    // ドラゴン頭(下)取得
     [SerializeField] private GameObject dragonBottom;
+
     private EnemyController enemyControllerScript;
     private EnemyBulletManager enemyBulletManager;
 
-    private bool isAimedStart = false;
-    private bool isChaseStart = false;
-
+    // 終了タイマー
     private float endTimer = 0.0f;
 
+    // Playerに向かって飛ぶ弾生成開始フラグ
+    private bool isAimedStart = false;
+    // ホーミング弾生成開始フラグ
+    private bool isChaseStart = false;
+
+    // PlayerかEnemyが死亡してから終了するまでの時間(死亡時の爆発アニメーションなどを考慮)
     const float END_TIME = 5.0f;
 
     public bool IsAimedStart { get => isAimedStart; set => isAimedStart = value; }

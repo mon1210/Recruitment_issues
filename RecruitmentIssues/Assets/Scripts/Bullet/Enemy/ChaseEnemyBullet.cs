@@ -7,7 +7,9 @@ using UnityEngine;
 /// </summary>
 public class ChaseEnemyBullet : MonoBehaviour
 {
+    // ˆÚ“®‘¬“x
     [SerializeField] private float moveSpeed = 0.0f;
+    // ’ÇÕ‚·‚éÅ‘åŠÔ
     [SerializeField] private float chaseLimitTime = 0.0f;
 
     private GameObject player;

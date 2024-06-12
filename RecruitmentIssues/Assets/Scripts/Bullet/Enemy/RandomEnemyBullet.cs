@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class RandomEnemyBullet : MonoBehaviour
 {
-    // •ûŒü
-    private Vector3 direction = Vector3.zero;
     // ˆÚ“®‘¬“x
     [SerializeField] private float moveSpeed = 0.0f;
+
+    // •ûŒü
+    private Vector3 direction = Vector3.zero;
 
     void Start()
     {     

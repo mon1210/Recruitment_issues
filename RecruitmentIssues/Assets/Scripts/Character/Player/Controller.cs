@@ -9,29 +9,31 @@ public class Controller : CharacterBase
     [SerializeField] private GameObject bulletPrefab;
     // 爆発エフェクトPrefab取得
     [SerializeField] private GameObject explosionPrefab;
-    // 残機表示用UIオブジェクト取得
-    [SerializeField] private LifeStarSpawner lifeStarsSpawner;
     // リロードテキスト取得
     [SerializeField] private GameObject reloadText;
+    // 残機表示用UIオブジェクト取得
+    [SerializeField] private LifeStarSpawner lifeStarsSpawner;
 
-    // キー入力を受け取って保存する用
-    private Vector2 input = Vector2.zero;
-
-    private Collider colliderScript;
     private SpriteRenderer spriteRenderer;
+    private Collider colliderScript;
 
-    // 減速フラグ
-    private bool isLow = false;
-    // 爆弾生成フラグ
-    private bool isBombInstantiate = false;
     // 残り機数
     private int life = 3;
     // 現在の弾数
     private int currentBullet = 5;
     // 現在の爆弾数
     private int currentBomb = 3;
+
     // リロードタイマー
     private float reloadTimer = 0.0f;
+
+    // 減速フラグ
+    private bool isLow = false;
+    // 爆弾生成フラグ
+    private bool isBombInstantiate = false;
+
+    // キー入力を受け取って保存する用
+    private Vector2 input = Vector2.zero;
 
     // 弾発射位置調整用定数
     const float BULLET_OFFSET_Y = 1.0f;
@@ -44,10 +46,9 @@ public class Controller : CharacterBase
     // 最大爆弾数
     const int MAX_BOMB = 3;
 
-    public Vector2 Input { get => input;}
-    public int Life { get => life;}
+    public int CurrentBomb { get => currentBomb; }
     public bool IsBombInstantiate { get => isBombInstantiate; set => isBombInstantiate = value; }
-    public int CurrentBomb { get => currentBomb;}
+    public Vector2 Input { get => input; }
 
     override protected void Start()
     {

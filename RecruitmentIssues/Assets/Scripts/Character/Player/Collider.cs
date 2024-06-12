@@ -4,25 +4,26 @@ using UnityEngine;
 
 public class Collider : MonoBehaviour
 {
-    // 画面の左下の座標
-    Vector2 screenLeftBottom = Vector2.zero;
-    // 画面の右上の座標
-    Vector2 screenRightTop = Vector2.zero;
+    // スクリプト取得　Input用
+    private Controller controllerScripts;
 
     // 移動可能かどうかを表すフラグ　変更はここでする
     private bool isMoveAble = true;
     // 被ダメージフラグ
     private bool isDamage = false;
-    // スクリプト取得　Input用
-    private Controller controllerScripts;
+
+    // 画面の左下の座標
+    Vector2 screenLeftBottom = Vector2.zero;
+    // 画面の右上の座標
+    Vector2 screenRightTop = Vector2.zero;
 
     // 中心点から画像の半分の大きさ
     const float OFFSET = 0.9f;
 
     public bool IsMoveAble { get => isMoveAble;}
-    public Vector2 S_LeftBottom { get => screenLeftBottom;}
-    public Vector2 S_RightTop { get => screenRightTop;}
     public bool IsDamage { get => isDamage; set => isDamage = value; }
+    public Vector2 S_LeftBottom { get => screenLeftBottom; }
+    public Vector2 S_RightTop { get => screenRightTop; }
 
     void Start()
     {
