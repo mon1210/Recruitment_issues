@@ -28,8 +28,11 @@ public class CharacterBase : MonoBehaviour
 
     virtual protected void Update()
     {
-        // 点滅管理
-        manageBlinking();
+        if (isBlink)
+        {
+            // 点滅管理
+            manageBlinking();
+        }
     }
 
     // 点滅処理  中身はそれぞれで定義する
@@ -38,19 +41,16 @@ public class CharacterBase : MonoBehaviour
     // 点滅が指定した秒間続くようにする
     protected void manageBlinking()
     {
-        if (isBlink)
+        blinkTimer -= Time.deltaTime;
+        if (blinkTimer > 0)
         {
-            blinkTimer -= Time.deltaTime;
-            if (blinkTimer > 0)
-            {
-                blinking();
-            }
-            else
-            {
-                // リセット
-                blinkTimer = BLINK_TIME;
-                isBlink = false;
-            }
+            blinking();
+        }
+        else
+        {
+            // リセット
+            blinkTimer = BLINK_TIME;
+            isBlink = false;
         }
     }
 }
