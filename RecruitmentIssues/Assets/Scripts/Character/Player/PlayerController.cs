@@ -15,7 +15,7 @@ public class PlayerController : CharacterBase
     [SerializeField] private LifeStarSpawner lifeStarsSpawner;
 
     private SpriteRenderer spriteRenderer;
-    private Collider colliderScript;
+    private PlayerCollider playerCollider;
 
     // 残り機数
     private int life = 3;
@@ -55,7 +55,7 @@ public class PlayerController : CharacterBase
         // 基底クラスのStart呼び出し
         base.Start();
 
-        colliderScript = GetComponent<Collider>();
+        playerCollider = GetComponent<PlayerCollider>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         reloadTimer = RELOAD_TIME; 
         currentBullet = MAX_BULLET;
@@ -70,10 +70,10 @@ public class PlayerController : CharacterBase
         base.Update();
 
         // 被ダメージ
-        if (colliderScript.IsDamage)
+        if (playerCollider.IsDamage)
         {
             life--;
-            colliderScript.IsDamage = false;
+            playerCollider.IsDamage = false;
             isBlink = true;
             // 残機UI更新
             lifeStarsSpawner.UpdateLifeStarsUI(life);
@@ -133,7 +133,7 @@ public class PlayerController : CharacterBase
         if (life > 0)
         {
             // 移動可能時のみ移動
-            if (colliderScript.IsMoveAble)
+            if (playerCollider.IsMoveAble)
             {
                 move();
             }

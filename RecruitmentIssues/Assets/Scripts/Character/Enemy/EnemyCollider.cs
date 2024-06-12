@@ -7,7 +7,7 @@ public class EnemyCollider : MonoBehaviour
     // スクリーンサイズ取得用
     [SerializeField] private GameObject player;
 
-    private Collider playerCollider;
+    private PlayerCollider playerCollider;
 
     // 移動方向を反転するフラグ
     private bool isMoveAble = true;
@@ -22,7 +22,7 @@ public class EnemyCollider : MonoBehaviour
 
     void Start()
     {
-        playerCollider = player.GetComponent<Collider>();
+        playerCollider = player.GetComponent<PlayerCollider>();
     }
 
     void Update()

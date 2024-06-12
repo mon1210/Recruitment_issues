@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Collider : MonoBehaviour
+public class PlayerCollider : MonoBehaviour
 {
     // スクリプト取得　Input用
     private PlayerController playerController;
