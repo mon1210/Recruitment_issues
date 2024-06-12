@@ -2,15 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ExplosionEffectBraker : MonoBehaviour
+public class EffectBraker : MonoBehaviour
 {
     // アニメーション再生時間
-    const float ANIMATION_TIME = 1.1f;
+    [SerializeField] private float animationTime = 0.0f;
 
     void Start()
     {
         // アニメーション再生終了後、自身を削除
-        Invoke("destroy", ANIMATION_TIME);
+        Invoke("destroy", animationTime);
     }
 
     private void destroy()

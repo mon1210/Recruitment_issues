@@ -6,6 +6,8 @@ public class BombController : MonoBehaviour
 {
     // 点滅周期
     [SerializeField] private float blinkInterval = 0.0f;
+    // 爆発エフェクトPrefa取得
+    [SerializeField] private GameObject explosionPrefab;
 
     private SpriteRenderer spriteRenderer;
     private float timer = 0.0f;
@@ -22,6 +24,9 @@ public class BombController : MonoBehaviour
 
     private void destroy()
     {
+        // エフェクト生成
+        Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+
         Destroy(gameObject);
     }
 
