@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Controller : CharacterBase
+public class PlayerController : CharacterBase
 {
     // ’ePrefabŽæ“¾
     [SerializeField] private GameObject bulletPrefab;

@@ -10,11 +10,11 @@ public class CurrentBombText : MonoBehaviour
     // PlayerŽæ“¾
     [SerializeField] private GameObject player;
 
-    private Controller controllerScript;
+    private PlayerController controllerScript;
 
     void Start()
     {
-        controllerScript = player.GetComponent<Controller>();
+        controllerScript = player.GetComponent<PlayerController>();
     }
 
     void Update()

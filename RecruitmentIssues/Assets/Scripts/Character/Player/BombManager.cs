@@ -15,7 +15,7 @@ public class BombManager : MonoBehaviour
     // スコア取得
     [SerializeField] private GameObject scoreText;
     
-    private Controller controllerScript;
+    private PlayerController playerController;
     private EnemyBulletManager enemyBulletManager;
     private ScoreManager scoreManager;
 
@@ -38,14 +38,14 @@ public class BombManager : MonoBehaviour
 
     void Start()
     {
-        controllerScript = GetComponent<Controller>();
+        playerController = GetComponent<PlayerController>();
         enemyBulletManager = enemy.GetComponent<EnemyBulletManager>();
         scoreManager = scoreText.GetComponent<ScoreManager>();
     }
 
     void Update()
     {
-        if(controllerScript.IsBombInstantiate)
+        if(playerController.IsBombInstantiate)
         {
             // 位置調整(この場合のtransform.positionはPlayer)
             Vector3 Pos = new Vector3(transform.position.x + OFFSET_Y, transform.position.y, transform.position.z);
@@ -53,7 +53,7 @@ public class BombManager : MonoBehaviour
             // 生成
             Instantiate(bombPrefab, Pos, Quaternion.identity);
 
-            controllerScript.IsBombInstantiate = false;
+            playerController.IsBombInstantiate = false;
 
             isTimerStart = true;
         }
