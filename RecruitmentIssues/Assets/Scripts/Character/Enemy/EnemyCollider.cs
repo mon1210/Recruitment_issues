@@ -44,8 +44,10 @@ public class EnemyCollider : MonoBehaviour
         // 画面と座標を比較し、画面外に出ようとしているときに移動できないように
         if ((transform.position.y + OFFSET > playerCollider.S_RightTop.y)   ||   // 天井
             (transform.position.y - OFFSET < playerCollider.S_LeftBottom.y)      // 床
-            ) { return false; }
-
+            ) 
+        {
+            return false;
+        }
 
         return true;
     }
