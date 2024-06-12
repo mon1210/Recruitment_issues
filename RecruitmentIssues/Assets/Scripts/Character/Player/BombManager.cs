@@ -4,18 +4,23 @@ using UnityEngine;
 
 /// <summary>
 /// Bombにのみスクリプトがあると、別オブジェクトで参照できないので管理スクリプトを用意
-/// Bombだとすぐに自身が消えてしまうので、敵の弾を削除しきれない
+/// Bombだとすぐに自身が消えてしまうので、敵の弾を削除しきれないのでここで削除する
 /// </summary>
 public class BombManager : MonoBehaviour
 {
+    // 爆弾Prefab取得
     [SerializeField] private GameObject bombPrefab;
+    // Enemy取得
     [SerializeField] private GameObject enemy;
+    // スコア取得
     [SerializeField] private GameObject scoreText;
     
     private Controller controllerScript;
     private EnemyBulletManager enemyBulletManager;
     private ScoreManager scoreManager;
+
     private float timer = 0;
+
     private bool isTimerStart = false;
 
     // 発射位置調整用定数
