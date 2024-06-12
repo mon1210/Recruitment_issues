@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletCollider : BulletBase
+public class BulletCollider : MonoBehaviour
 {
     private ScoreManager scoreManager;
 
