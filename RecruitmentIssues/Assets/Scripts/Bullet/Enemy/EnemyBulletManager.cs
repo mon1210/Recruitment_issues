@@ -38,41 +38,27 @@ public class EnemyBulletManager : MonoBehaviour
         }
     }
 
-    // ÉäÉXÉgè„ÇÃíeçÌèú     à¯êîÇ≈éÌóﬁÇîªíf
+    // ÉäÉXÉgè„ÇÃíeçÌèúä÷êîîªï 
     public int DestroyAllBullets(BulletKind bullet_kind)
     {
-        int DestroyedCount = 0;
-        switch (bullet_kind)
+        return bullet_kind switch
         {
-            case BulletKind.Random:
-                DestroyedCount = randomBullets.Count;
-                foreach (GameObject bullet in randomBullets)
-                {
-                    Destroy(bullet);
-                }
-                randomBullets.Clear();
-                return DestroyedCount;
+            BulletKind.Random => DestroyAllBulletLists(randomBullets),
+            BulletKind.Aimed => DestroyAllBulletLists(aimedBullets),
+            BulletKind.Chase => DestroyAllBulletLists(chaseBullets),
+            _ => 0,
+        };
+    }
 
-            case BulletKind.Aimed:
-                DestroyedCount = aimedBullets.Count;
-                foreach (GameObject bullet in aimedBullets)
-                {
-                    Destroy(bullet);
-                }
-                aimedBullets.Clear();
-                return DestroyedCount;
-
-            case BulletKind.Chase:
-                DestroyedCount = chaseBullets.Count;
-                foreach (GameObject bullet in chaseBullets)
-                {
-                    Destroy(bullet);
-                }
-                chaseBullets.Clear();
-                return DestroyedCount;
-
-            default:
-                return 0;
+    // ÉäÉXÉgè„ÇÃíeçÌèú
+    private int DestroyAllBulletLists(List<GameObject> bullets)
+    {
+        int DestroyedCount = bullets.Count;
+        foreach (GameObject bullet in bullets)
+        {
+            Destroy(bullet);
         }
+        bullets.Clear();
+        return DestroyedCount;
     }
 }
