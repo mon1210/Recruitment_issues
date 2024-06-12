@@ -10,6 +10,7 @@ public class BombController : MonoBehaviour
     [SerializeField] private GameObject explosionPrefab;
 
     private SpriteRenderer spriteRenderer;
+
     private float timer = 0.0f;
 
     // ”š”­‚Ü‚Å‚ÌŠÔ
@@ -18,6 +19,7 @@ public class BombController : MonoBehaviour
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+
         // ”­¶ŒãAˆê•bŒã‚É”š”­
         Invoke("destroy", EXPLOSION_TIMER);
     }
