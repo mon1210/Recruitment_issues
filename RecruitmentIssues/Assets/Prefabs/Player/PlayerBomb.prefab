@@ -100,6 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blinkInterval: 0.5
+  explosionPrefab: {fileID: 5832889931160516675, guid: f5b421bc89b4e2441ac178533d879d58, type: 3}
 --- !u!114 &8823567972635682824
 MonoBehaviour:
   m_ObjectHideFlags: 0
