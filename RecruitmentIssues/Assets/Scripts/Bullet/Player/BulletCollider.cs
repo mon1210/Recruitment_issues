@@ -6,6 +6,8 @@ public class BulletCollider : BulletBase
 {
     private ScoreManager scoreManager;
 
+    // “G‚Ì“_”
+    const int ENEMY_SCORE = 5;
     // ƒ‰ƒ“ƒ_ƒ€‚É‚Î‚ç‚Ü‚©‚ê‚é’e‚Ì“_”
     const int RANDOM_BULLET_SCORE = 3;
     // Player‚ÉŒü‚©‚Á‚Ä”ò‚Ô’e‚Ì“_”
@@ -19,15 +21,19 @@ public class BulletCollider : BulletBase
         scoreManager = GameObject.Find("Score").GetComponent<ScoreManager>();
     }
 
+    // ÚG‚É©g‚ğíœ‚µ‚ÄAƒXƒRƒA‚ğ‰ÁZ‚·‚é
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // Enemy‚ÆÚGA©g‚ğíœ
+        // Enemy
         if (collision.CompareTag("Enemy"))
         {
             Destroy(this.gameObject);
+
+            // ƒXƒRƒA‰ÁZ
+            scoreManager.AddScore(ENEMY_SCORE);
         }
 
-        // “G‚Ì’e‚ÆÚGAScore‰ÁZ ----------------------------------
+        // “G‚Ì’e -------------------------------------
         // ƒ‰ƒ“ƒ_ƒ€
         if (collision.CompareTag("RandomBullet"))
         {
