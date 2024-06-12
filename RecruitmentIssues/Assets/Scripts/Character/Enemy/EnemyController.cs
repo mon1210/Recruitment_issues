@@ -5,21 +5,25 @@ using UnityEngine.SceneManagement;
 
 public class EnemyController : CharacterBase
 {
-    private EnemyCollider enemyCollider;
-    private EnemyBulletManager enemyBulletManager;
-    private SpriteRenderer spriteRenderer;
-
+    // ランダムにばらまかれる弾Prefab取得
     [SerializeField] private GameObject randomBulletPrefab;
+    // Playerに向かって飛ぶ弾Prefab取得
     [SerializeField] private GameObject aimedBulletPrefab;
+    // ホーミング弾取得
     [SerializeField] private GameObject chaseBulletPrefab;
     // 爆発エフェクトPrefab取得
     [SerializeField] private GameObject explosionPrefab;
-
+    // GameManager取得
     [SerializeField] private GameManager gameManager;
     // 残り体力
     [SerializeField] private int hitPoint = 100;
 
+    private SpriteRenderer spriteRenderer;
+    private EnemyCollider enemyCollider;
+    private EnemyBulletManager enemyBulletManager;
+
     private float moveTimer = 0.0f;
+    // 弾生成が開始されたかどうかのフラグ　コルーチンが一度しかStartしないようにする
     private bool isStartAimedBullet = false;
     private bool isStartChaseBullet = false;
 
