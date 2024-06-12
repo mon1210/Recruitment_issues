@@ -9,10 +9,13 @@ public class CharacterBase : MonoBehaviour
     // 点滅周期
     [SerializeField] protected float blinkInterval = 0.0f;
 
-    // 点滅フラグ
-    protected bool isBlink = false;
+    // PlayerにもEnemyにもある変数なのでここで宣言  ここでは使用しない
     protected float timer = 0.0f;
 
+    // 点滅フラグ
+    protected bool isBlink = false;
+
+    // 点滅タイマー
     private float blinkTimer = 0.0f;
 
     // 点滅時間
@@ -25,10 +28,11 @@ public class CharacterBase : MonoBehaviour
 
     virtual protected void Update()
     {
-        // 点滅処理
+        // 点滅管理
         manageBlinking();
     }
 
+    // 点滅処理  中身はそれぞれで定義する
     virtual protected void blinking() { }
 
     // 点滅が指定した秒間続くようにする
