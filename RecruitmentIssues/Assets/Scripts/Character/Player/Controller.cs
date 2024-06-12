@@ -59,6 +59,8 @@ public class Controller : CharacterBase
         reloadTimer = RELOAD_TIME; 
         currentBullet = MAX_BULLET;
         currentBomb = MAX_BOMB;
+
+        reloadText.SetActive(false);
     }
 
     override protected void Update()
