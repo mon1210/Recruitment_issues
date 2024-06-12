@@ -6,6 +6,7 @@ public class EnemyCollider : MonoBehaviour
 {
     // スクリーンサイズ取得用
     [SerializeField] private GameObject player;
+
     private Collider playerCollider;
 
     // 移動方向を反転するフラグ
