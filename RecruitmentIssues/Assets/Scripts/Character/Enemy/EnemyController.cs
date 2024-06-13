@@ -15,6 +15,8 @@ public class EnemyController : CharacterBase
     [SerializeField] private GameObject explosionPrefab;
     // GameManager取得
     [SerializeField] private GameManager gameManager;
+    // スコア管理スクリプト取得
+    [SerializeField] private ScoreManager scoreManager;
     // 残り体力
     [SerializeField] private int hitPoint = 100;
 
@@ -27,6 +29,8 @@ public class EnemyController : CharacterBase
     private bool isStartAimedBullet = false;
     private bool isStartChaseBullet = false;
 
+    // 撃破時の加算スコア
+    const int SCORE = 5000;
     // 移動判定までのタイム
     const float REVERSE_MOVE_TIME = 3.0f;
     // ランダムな弾の発射間隔定数
@@ -84,6 +88,9 @@ public class EnemyController : CharacterBase
         }
         else
         {
+            // スコア加算
+            scoreManager.AddScore(SCORE);
+
             // 自身を非表示
             this.gameObject.SetActive(false);
 

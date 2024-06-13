@@ -6,11 +6,16 @@ public class DragonController : CharacterBase
 {
     // 爆発エフェクトPrefab取得
     [SerializeField] private GameObject explosionPrefab;
+    // スコア管理スクリプト取得
+    [SerializeField] private ScoreManager scoreManager;
     // 残り体力
     [SerializeField] private int hitPoint = 30;
 
     private SpriteRenderer spriteRenderer;
     private DragonCollider dragonCollider;
+
+    // 撃破時の加算スコア
+    const int SCORE = 500;
 
     override protected void Start()
     {
@@ -44,6 +49,9 @@ public class DragonController : CharacterBase
         // 体力ゼロ
         if (hitPoint <= 0)
         {
+            // スコア加算
+            scoreManager.AddScore(SCORE);
+
             // 自身を非表示
             this.gameObject.SetActive(false);
 
