@@ -244,4 +244,14 @@ public class PlayerController : CharacterBase
             bomb();
         }
     }
+
+    // リロード
+    public void OnReloadEvent(InputAction.CallbackContext context)
+    {
+        // R or pad左ボタン を押したら
+        if (context.phase == InputActionPhase.Performed)
+        {
+            reload();
+        }
+    }
 }
