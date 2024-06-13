@@ -41,6 +41,9 @@ public class BombManager : MonoBehaviour
         playerController = GetComponent<PlayerController>();
         enemyBulletManager = enemy.GetComponent<EnemyBulletManager>();
         scoreManager = scoreText.GetComponent<ScoreManager>();
+
+        timer = 0.0f;
+        isTimerStart = false;
     }
 
     void Update()

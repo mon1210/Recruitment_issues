@@ -62,9 +62,14 @@ public class PlayerController : CharacterBase
 
         playerCollider = GetComponent<PlayerCollider>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+
         reloadTimer = RELOAD_TIME; 
         currentBullet = MAX_BULLET;
         currentBomb = MAX_BOMB;
+
+        isLow = false;
+        isBombInstantiate = false;
+        isReloading = false;
 
         reloadText.SetActive(false);
     }

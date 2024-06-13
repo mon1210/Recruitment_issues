@@ -29,6 +29,9 @@ public class PlayerCollider : MonoBehaviour
     {
         playerController = GetComponent<PlayerController>();
 
+        isMoveAble = true;
+        isDamage = false;
+
         // À•W‚ğæ“¾
         screenLeftBottom = Camera.main.ScreenToWorldPoint(Vector3.zero);
 

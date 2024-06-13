@@ -20,6 +20,8 @@ public class BombController : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
 
+        timer = 0.0f;
+
         // ”­¶ŒãAˆê•bŒã‚É”š”­
         Invoke("destroy", EXPLOSION_TIMER);
     }
