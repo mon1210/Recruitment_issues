@@ -13,7 +13,9 @@ public class PlayerController : CharacterBase
     [SerializeField] private GameObject reloadText;
     // 残弾数テキスト取得
     [SerializeField] private GameObject currentBulletText;
-    // 残機表示用UIオブジェクト取得
+    // スコアスクリプト取得
+    [SerializeField] private ScoreManager scoreManager;
+    // 残機表示用UIスクリプト取得
     [SerializeField] private LifeStarSpawner lifeStarsSpawner;
 
     private SpriteRenderer spriteRenderer;
@@ -40,7 +42,9 @@ public class PlayerController : CharacterBase
     private Vector2 input = Vector2.zero;
 
     // 弾発射位置調整用定数
-    const float BULLET_OFFSET_Y = 1.0f;
+    const float BULLET_OFFSET_X = 1.0f;
+    // 弾発射位置調整用定数   二発発射時の弾間隔/2
+    const float BULLET_OFFSET_Y = 0.2f;
     // 移動速度原則倍率定数
     const float SLOWDOWN_FACTOR = 0.5f;
     // リロード時間
@@ -49,6 +53,8 @@ public class PlayerController : CharacterBase
     const int MAX_BULLET = 10;
     // 最大爆弾数
     const int MAX_BOMB = 3;
+    // 二発発射が可能になるスコア
+    const int DOUBLE_BULLET_SCORE = 4000;
 
     public int CurrentBomb { get => currentBomb; }
     public bool IsBombInstantiate { get => isBombInstantiate; set => isBombInstantiate = value; }
@@ -121,13 +127,28 @@ public class PlayerController : CharacterBase
     // 攻撃関数
     private void fire()
     {
-        currentBullet--;
+        // ある程度のスコアを超えたら
+        if(scoreManager.Score >= DOUBLE_BULLET_SCORE)
+        {
+            // 二発減らす
+            currentBullet -= 2;
+            // 二発同時発射
+            bulletPrefab.transform.position = new Vector3(transform.position.x + BULLET_OFFSET_X, transform.position.y + BULLET_OFFSET_Y, transform.position.z);
+            Instantiate(bulletPrefab);
+            bulletPrefab.transform.position = new Vector3(transform.position.x + BULLET_OFFSET_X, transform.position.y - BULLET_OFFSET_Y, transform.position.z);
+            Instantiate(bulletPrefab);
+        }
+        else
+        {
+            currentBullet--;
 
-        // 位置調整
-        bulletPrefab.transform.position = new Vector3(transform.position.x + BULLET_OFFSET_Y, transform.position.y, transform.position.z);
-        
-        // 生成
-        Instantiate(bulletPrefab);
+            // 位置調整
+            bulletPrefab.transform.position = new Vector3(transform.position.x + BULLET_OFFSET_Y, transform.position.y, transform.position.z);
+
+            // 生成
+            Instantiate(bulletPrefab);
+        }
+
     }
 
     // 爆撃関数
@@ -199,9 +220,18 @@ public class PlayerController : CharacterBase
         reloadTimer -= Time.deltaTime;
         if(reloadTimer <= 0)
         {
-            // リセット
+            // リセット -----------------------------
             reloadText.SetActive(false);
-            currentBullet = MAX_BULLET;
+
+            // 二発発射の時、最大弾数も二倍
+            if (scoreManager.Score >= DOUBLE_BULLET_SCORE)
+            {
+                currentBullet = MAX_BULLET * 2;
+            }
+            else
+            {
+                currentBullet = MAX_BULLET;
+            }
             reloadTimer = RELOAD_TIME;
             currentBulletText.SetActive(true);
             isReloading = false;
