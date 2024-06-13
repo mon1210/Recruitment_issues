@@ -23,6 +23,8 @@ public class ChaseEnemyBullet : MonoBehaviour
     {
         // ©g‚ªPrefab‚È‚Ì‚ÅFind‚ğg—p
         player = GameObject.Find("Player");
+
+        chaseTimer = 0.0f;
     }
 
     void Update()
