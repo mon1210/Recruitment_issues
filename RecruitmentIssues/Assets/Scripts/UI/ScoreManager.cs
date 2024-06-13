@@ -10,6 +10,8 @@ public class ScoreManager : MonoBehaviour
 
     private int score = 0;
 
+    public int Score { get => score;}
+
     void Start()
     {
         // •\Ž¦
