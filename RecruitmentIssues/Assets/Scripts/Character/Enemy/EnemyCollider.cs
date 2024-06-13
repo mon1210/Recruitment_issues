@@ -23,6 +23,9 @@ public class EnemyCollider : MonoBehaviour
     void Start()
     {
         playerCollider = player.GetComponent<PlayerCollider>();
+
+        isMoveAble = true;
+        isDamage = false;
     }
 
     void Update()

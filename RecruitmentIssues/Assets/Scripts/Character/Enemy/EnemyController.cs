@@ -47,6 +47,10 @@ public class EnemyController : CharacterBase
         enemyBulletManager = GetComponent<EnemyBulletManager>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
+        moveTimer = 0.0f;
+        isStartAimedBullet = false;
+        isStartChaseBullet = false;
+
         // ƒ‰ƒ“ƒ_ƒ€‚È’e‚Ì¶¬‚ğŠJn
         StartCoroutine(SpawnRandomBullet());
     }
