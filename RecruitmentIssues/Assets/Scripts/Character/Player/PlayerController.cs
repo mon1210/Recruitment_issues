@@ -11,6 +11,8 @@ public class PlayerController : CharacterBase
     [SerializeField] private GameObject explosionPrefab;
     // リロードテキスト取得
     [SerializeField] private GameObject reloadText;
+    // 残弾数テキスト取得
+    [SerializeField] private GameObject currentBulletText;
     // 残機表示用UIオブジェクト取得
     [SerializeField] private LifeStarSpawner lifeStarsSpawner;
 
@@ -49,6 +51,7 @@ public class PlayerController : CharacterBase
     public int CurrentBomb { get => currentBomb; }
     public bool IsBombInstantiate { get => isBombInstantiate; set => isBombInstantiate = value; }
     public Vector2 Input { get => input; }
+    public int CurrentBullet { get => currentBullet; }
 
     override protected void Start()
     {
@@ -181,6 +184,8 @@ public class PlayerController : CharacterBase
     // リロード関数
     private void reload()
     {
+        currentBulletText.SetActive(false);
+
         reloadText.SetActive(true);
         reloadTimer -= Time.deltaTime;
         if(reloadTimer <= 0)
@@ -189,6 +194,7 @@ public class PlayerController : CharacterBase
             reloadText.SetActive(false);
             currentBullet = MAX_BULLET;
             reloadTimer = RELOAD_TIME;
+            currentBulletText.SetActive(true);
         }
 
     }
@@ -217,7 +223,7 @@ public class PlayerController : CharacterBase
     // 低速
     public void OnLowEvent(InputAction.CallbackContext context)
     {
-        // 左クリック or pad右トリガー を押したら
+        // 左Shift or pad左トリガー を押したら
         if (context.phase == InputActionPhase.Performed)
         {
             isLow = true;
@@ -232,7 +238,7 @@ public class PlayerController : CharacterBase
     // 爆撃
     public void OnBombEvent(InputAction.CallbackContext context)
     {
-        // 左クリック or pad右トリガー を押したら  爆弾が残っているとき
+        // Space or pad右上トリガー を押したら  爆弾が残っているとき
         if (context.phase == InputActionPhase.Performed && currentBomb > 0 && life > 0)
         {
             bomb();
