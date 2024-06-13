@@ -33,6 +33,8 @@ public class PlayerController : CharacterBase
     private bool isLow = false;
     // 爆弾生成フラグ
     private bool isBombInstantiate = false;
+    // リロード中かどうかを表すフラグ
+    private bool isReloading = false;
 
     // キー入力を受け取って保存する用
     private Vector2 input = Vector2.zero;
@@ -84,7 +86,7 @@ public class PlayerController : CharacterBase
         }
 
         // リロード
-        if (currentBullet <= 0)
+        if (currentBullet <= 0 || isReloading)
         {
             reload();
         }
@@ -184,9 +186,11 @@ public class PlayerController : CharacterBase
     // リロード関数
     private void reload()
     {
+        // 残弾数テキストを非表示
         currentBulletText.SetActive(false);
-
+        // リロード中テキストを表示
         reloadText.SetActive(true);
+
         reloadTimer -= Time.deltaTime;
         if(reloadTimer <= 0)
         {
@@ -195,6 +199,7 @@ public class PlayerController : CharacterBase
             currentBullet = MAX_BULLET;
             reloadTimer = RELOAD_TIME;
             currentBulletText.SetActive(true);
+            isReloading = false;
         }
 
     }
@@ -214,7 +219,7 @@ public class PlayerController : CharacterBase
     public void OnFireEvent(InputAction.CallbackContext context)
     {
         // 左クリック or pad右トリガー を押したら
-        if (context.phase == InputActionPhase.Performed && currentBullet > 0 && life > 0)
+        if (context.phase == InputActionPhase.Performed && currentBullet > 0 && life > 0 && !isReloading)
         {
             fire();
         }
@@ -249,9 +254,9 @@ public class PlayerController : CharacterBase
     public void OnReloadEvent(InputAction.CallbackContext context)
     {
         // R or pad左ボタン を押したら
-        if (context.phase == InputActionPhase.Performed)
+        if (context.phase == InputActionPhase.Performed && !isReloading)
         {
-            reload();
+            isReloading = true;
         }
     }
 }
