@@ -23,6 +23,8 @@ public class CharacterBase : MonoBehaviour
 
     virtual protected void Start()
     {
+        timer = 0.0f;
+        isBlink = false;
         blinkTimer = BLINK_TIME;
     }
 
