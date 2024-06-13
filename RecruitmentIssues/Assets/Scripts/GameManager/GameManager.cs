@@ -34,10 +34,12 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        endTimer = 0.0f;
-
         enemyControllerScript = enemy.GetComponent<EnemyController>();
         enemyBulletManager = enemy.GetComponent<EnemyBulletManager>();
+
+        endTimer = 0.0f;
+        isAimedStart = false;
+        isChaseStart= false;
     }
 
     void Update()
